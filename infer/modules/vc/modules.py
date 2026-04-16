@@ -160,6 +160,9 @@ class VC:
     ):
         if input_audio_path is None:
             return "You need to upload an audio", None
+        input_audio_path = str(input_audio_path).strip()
+        if input_audio_path == "":
+            return "You need to provide a valid audio file path.", None
         f0_up_key = int(f0_up_key)
         try:
             audio = load_audio(input_audio_path, 16000)
@@ -222,7 +225,9 @@ class VC:
         except:
             info = traceback.format_exc()
             logger.warning(info)
-            return info, (None, None)
+            # Let Gradio render the text error instead of trying to postprocess
+            # an invalid audio payload and masking the real exception.
+            return info, None
 
     def vc_multi(
         self,

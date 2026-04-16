@@ -4,19 +4,29 @@ from fairseq import checkpoint_utils
 
 
 def get_index_path_from_model(sid):
-    return next(
+    stem = sid.split(".")[0]
+    roots = [os.getenv("outside_index_root"), os.getenv("index_root")]
+    candidates = []
+    for base in roots:
+        if not base or not os.path.exists(base):
+            continue
+        for root, _, files in os.walk(base, topdown=False):
+            for name in files:
+                if name.endswith(".index") and "trained" not in name:
+                    candidates.append(os.path.join(root, name))
+
+    exact = next(
         (
-            f
-            for f in [
-                os.path.join(root, name)
-                for root, _, files in os.walk(os.getenv("index_root"), topdown=False)
-                for name in files
-                if name.endswith(".index") and "trained" not in name
-            ]
-            if sid.split(".")[0] in f
+            path
+            for path in candidates
+            if os.path.splitext(os.path.basename(path))[0].lower() == stem.lower()
         ),
         "",
     )
+    if exact:
+        return exact
+
+    return next((path for path in candidates if stem.lower() in path.lower()), "")
 
 
 def load_hubert(config):

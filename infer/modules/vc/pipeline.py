@@ -2,6 +2,7 @@ import os
 import sys
 import traceback
 import logging
+import platform
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +25,34 @@ sys.path.append(now_dir)
 bh, ah = signal.butter(N=5, Wn=48, btype="high", fs=16000)
 
 input_audio_path2wav = {}
+
+
+def _safe_index_search(index, big_npy, query, k):
+    query = np.ascontiguousarray(query.astype("float32", copy=False))
+    if (
+        platform.system() != "Darwin"
+        and os.getenv("RVC_FORCE_NUMPY_INDEX", "").lower() not in {"1", "true", "yes"}
+    ):
+        return index.search(query, k)
+
+    # faiss.search segfaults on some macOS setups for real HuBERT features.
+    # Fall back to a pure NumPy L2 search in manageable query batches.
+    db = np.ascontiguousarray(big_npy.astype("float32", copy=False))
+    db_norm = np.sum(db * db, axis=1, keepdims=True).T
+    all_scores = []
+    all_ix = []
+    batch = 32
+    for i in range(0, query.shape[0], batch):
+        q = query[i : i + batch]
+        q_norm = np.sum(q * q, axis=1, keepdims=True)
+        dist = q_norm + db_norm - 2.0 * np.matmul(q, db.T)
+        dist = np.maximum(dist, 1e-12)
+        part = np.argpartition(dist, kth=k - 1, axis=1)[:, :k]
+        part_scores = np.take_along_axis(dist, part, axis=1)
+        order = np.argsort(part_scores, axis=1)
+        all_ix.append(np.take_along_axis(part, order, axis=1))
+        all_scores.append(np.take_along_axis(part_scores, order, axis=1))
+    return np.concatenate(all_scores, axis=0), np.concatenate(all_ix, axis=0)
 
 
 @lru_cache
@@ -225,14 +254,12 @@ class Pipeline(object):
             and not isinstance(big_npy, type(None))
             and index_rate != 0
         ):
-            npy = feats[0].cpu().numpy()
-            if self.is_half:
-                npy = npy.astype("float32")
+            npy = np.ascontiguousarray(feats[0].cpu().numpy().astype("float32", copy=False))
 
             # _, I = index.search(npy, 1)
             # npy = big_npy[I.squeeze()]
 
-            score, ix = index.search(npy, k=8)
+            score, ix = _safe_index_search(index, big_npy, npy, k=8)
             weight = np.square(1 / score)
             weight /= weight.sum(axis=1, keepdims=True)
             npy = np.sum(big_npy[ix] * np.expand_dims(weight, axis=2), axis=1)

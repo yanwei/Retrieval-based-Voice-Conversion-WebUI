@@ -6,6 +6,7 @@ __pycache__
 /opt
 tools/aria2c/
 tools/flag.txt
+tools/__pycache__/
 
 # Imported from huggingface.co/lj1995/VoiceConversionWebUI
 /pretrained
@@ -23,6 +24,26 @@ rmvpe.pt
 .tool-versions
 
 /runtime
-/assets/weights/*
 ffmpeg.*
 ffprobe.*
+/assets/weights/*
+!/assets/weights/.gitignore
+/assets/indices/*
+!/assets/indices/.gitignore
+/assets/hubert/*
+!/assets/hubert/.gitignore
+!/assets/hubert/hubert_inputs.pth
+/assets/rmvpe/*
+!/assets/rmvpe/.gitignore
+!/assets/rmvpe/rmvpe_inputs.pth
+/assets/uvr5_weights/*
+!/assets/uvr5_weights/.gitignore
+!/assets/uvr5_weights/onnx_dereverb_By_FoxJoy/
+/assets/uvr5_weights/onnx_dereverb_By_FoxJoy/*
+/assets/pretrained/*
+!/assets/pretrained/.gitignore
+/assets/pretrained_v2/*
+!/assets/pretrained_v2/.gitignore
+!/assets/Synthesizer_inputs.pth
+/outputs
+/downloads

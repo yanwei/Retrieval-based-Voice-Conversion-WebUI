@@ -137,6 +137,12 @@ class Config:
         logger.info("overwrite preprocess_per to %d" % (self.preprocess_per))
 
     def device_config(self) -> tuple:
+        force_cpu = os.getenv("RVC_FORCE_CPU", "").lower() in {"1", "true", "yes"}
+        if force_cpu:
+            logger.info("RVC_FORCE_CPU is enabled, using cpu instead of mps/cuda")
+            self.device = self.instead = "cpu"
+            self.is_half = False
+            self.use_fp32_config()
         if torch.cuda.is_available():
             if self.has_xpu():
                 self.device = self.instead = "xpu:0"
@@ -165,12 +171,12 @@ class Config:
             )
             if self.gpu_mem <= 4:
                 self.preprocess_per = 3.0
-        elif self.has_mps():
+        elif force_cpu is False and self.has_mps():
             logger.info("No supported Nvidia GPU found")
             self.device = self.instead = "mps"
             self.is_half = False
             self.use_fp32_config()
-        else:
+        elif force_cpu is False:
             logger.info("No supported Nvidia GPU found")
             self.device = self.instead = "cpu"
             self.is_half = False
