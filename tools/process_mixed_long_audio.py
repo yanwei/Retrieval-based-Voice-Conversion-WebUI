@@ -5,6 +5,7 @@ import os
 import shutil
 import subprocess
 import sys
+import threading
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -30,11 +31,13 @@ sys.path.append(str(REPO_ROOT))
 
 from configs.config import Config
 from infer.lib.rmvpe import RMVPE
+import infer.modules.uvr5.modules as uvr_modules
 from infer.modules.uvr5.modules import uvr
 from infer.modules.vc.modules import VC
 
 
-UVR_MODEL = "HP5_only_main_vocal"
+UVR_MODEL = "auto"
+UVR_AUTO_CANDIDATES = ("HP5_only_main_vocal", "HP3_all_vocals")
 MALE_MODEL = "man-B.pth"
 MALE_INDEX = "man-B.index"
 FEMALE_MODEL = "splicegirl_v3_e130_s26520.pth"
@@ -69,6 +72,8 @@ SEGMENT_PAD_SEC = 0.08
 SHORT_SEGMENT_SEC = 0.60
 SHORT_SEGMENT_JOIN_GAP_SEC = 0.25
 SHORT_SEGMENT_PASSTHROUGH_SEC = 0.60
+SHORT_PASSTHROUGH_CONTEXT_SEC = 1.50
+SHORT_PASSTHROUGH_CONTEXT_GAP_SEC = 3.00
 SHORT_FEMALE_HIGH_F0_PASSTHROUGH_SEC = 1.00
 SHORT_FEMALE_HIGH_F0_HZ = 300.0
 SAME_ROUTE_MERGE_GAP_SEC = 0.35
@@ -101,12 +106,14 @@ SPEAKER_CONTINUATION_THRESHOLD = 0.52
 SPEAKER_CROSS_ROUTE_THRESHOLD = 0.72
 UNVOICED_MIN_FRAMES = 10
 UNVOICED_MIN_RATIO = 0.15
-DECISION_F0_HZ = 175.0
+DECISION_F0_HZ = 190.0
 HIGH_CONF_MALE_MAX_HZ = 165.0
 HIGH_CONF_FEMALE_MIN_HZ = 190.0
+SEGMENT_EDGE_FADE_SEC = 0.025
 
 SPEAKER_ENCODER = None
 SPEAKER_ENCODER_FAILED = False
+UVR_LOCK = threading.Lock()
 
 
 @dataclass
@@ -163,21 +170,32 @@ def analyze_intervals(
     return analyzed
 
 
-def absorb_short_passthrough_segments(segments: List[dict]) -> None:
+def absorb_short_passthrough_segments(segments: List[dict], sr: int) -> None:
     if not READING_MODE:
         return
     for idx, item in enumerate(segments):
         is_forced_short = item["duration_sec"] < SHORT_SEGMENT_PASSTHROUGH_SEC
+        is_context_passthrough = (
+            item["route"] == "passthrough"
+            and item["duration_sec"] <= SHORT_PASSTHROUGH_CONTEXT_SEC
+            and item.get("note") == "low_voice"
+        )
         is_short_female_exclaim = (
             item["route"] == "female"
             and item["duration_sec"] < SHORT_FEMALE_HIGH_F0_PASSTHROUGH_SEC
             and item["median_f0"] >= SHORT_FEMALE_HIGH_F0_HZ
         )
-        if not (is_forced_short or is_short_female_exclaim):
+        if not (is_forced_short or is_context_passthrough or is_short_female_exclaim):
             continue
 
         prev_seg = segments[idx - 1] if idx > 0 else None
         next_seg = segments[idx + 1] if idx + 1 < len(segments) else None
+        prev_gap_sec = (
+            (item["start"] - prev_seg["end"]) / sr if prev_seg is not None else None
+        )
+        next_gap_sec = (
+            (next_seg["start"] - item["end"]) / sr if next_seg is not None else None
+        )
         candidate = None
 
         if (
@@ -185,11 +203,21 @@ def absorb_short_passthrough_segments(segments: List[dict]) -> None:
             and next_seg
             and prev_seg["route"] == next_seg["route"]
             and prev_seg["route"] != "passthrough"
+            and (prev_gap_sec is None or prev_gap_sec <= SHORT_PASSTHROUGH_CONTEXT_GAP_SEC)
+            and (next_gap_sec is None or next_gap_sec <= SHORT_PASSTHROUGH_CONTEXT_GAP_SEC)
         ):
             candidate = prev_seg
-        elif prev_seg and prev_seg["route"] != "passthrough":
+        elif (
+            prev_seg
+            and prev_seg["route"] != "passthrough"
+            and (prev_gap_sec is None or prev_gap_sec <= SHORT_PASSTHROUGH_CONTEXT_GAP_SEC)
+        ):
             candidate = prev_seg
-        elif next_seg and next_seg["route"] != "passthrough":
+        elif (
+            next_seg
+            and next_seg["route"] != "passthrough"
+            and (next_gap_sec is None or next_gap_sec <= SHORT_PASSTHROUGH_CONTEXT_GAP_SEC)
+        ):
             candidate = next_seg
 
         if candidate:
@@ -198,6 +226,8 @@ def absorb_short_passthrough_segments(segments: List[dict]) -> None:
             item["note"] = (
                 "short_absorbed_into_context"
                 if is_forced_short
+                else "short_passthrough_absorbed"
+                if is_context_passthrough
                 else "short_high_female_absorbed"
             )
             if candidate.get("median_f0", 0.0) > 0:
@@ -290,7 +320,116 @@ def find_single_file(directory: Path, pattern: str) -> Path:
     return matches[-1]
 
 
-def run_uvr_split(input_audio: Path, output_dir: Path) -> Tuple[Path, Path]:
+def run_uvr_paths(
+    paths: List[SimpleNamespace],
+    uvr_vocal_dir: Path,
+    uvr_inst_dir: Path,
+    temp_dir: Path,
+    model_name: str | None = None,
+) -> List[str]:
+    messages: List[str] = []
+    selected_model = model_name or UVR_MODEL
+    with UVR_LOCK:
+        old_uvr_device = uvr_modules.config.device
+        old_uvr_is_half = uvr_modules.config.is_half
+        old_temp = os.environ.get("TEMP")
+        try:
+            # The UVR VR model can produce saturated/noisy output on Apple MPS.
+            # Keep separation on CPU; later RVC stages may still use the main Config device.
+            temp_dir.mkdir(parents=True, exist_ok=True)
+            os.environ["TEMP"] = str(temp_dir)
+            uvr_modules.config.device = "cpu"
+            uvr_modules.config.is_half = False
+            for message in uvr(
+                selected_model,
+                "",
+                str(uvr_vocal_dir),
+                paths,
+                str(uvr_inst_dir),
+                10,
+                "wav",
+            ):
+                if message:
+                    messages.append(message)
+        finally:
+            uvr_modules.config.device = old_uvr_device
+            uvr_modules.config.is_half = old_uvr_is_half
+            if old_temp is None:
+                os.environ.pop("TEMP", None)
+            else:
+                os.environ["TEMP"] = old_temp
+    return messages
+
+
+def find_uvr_pair(input_name: str, raw_dirs: Tuple[Path, Path]) -> Tuple[Path | None, Path | None]:
+    vocal_matches = sorted(
+        path for directory in raw_dirs for path in directory.glob(f"vocal_{input_name}*.wav")
+    )
+    inst_matches = sorted(
+        path
+        for directory in raw_dirs
+        for path in directory.glob(f"instrument_{input_name}*.wav")
+    )
+    return (
+        vocal_matches[-1] if vocal_matches else None,
+        inst_matches[-1] if inst_matches else None,
+    )
+
+
+def run_chunked_uvr_split(
+    input_audio: Path,
+    output_dir: Path,
+    uvr_vocal_dir: Path,
+    uvr_inst_dir: Path,
+    model_name: str,
+) -> Tuple[Path, Path, List[str]]:
+    chunk_dir = output_dir / "uvr_chunks"
+    chunk_dir.mkdir(parents=True, exist_ok=True)
+    audio, sr = sf.read(input_audio, always_2d=True)
+    chunk_size = int(30.0 * sr)
+    chunk_paths = []
+    for idx, start in enumerate(range(0, len(audio), chunk_size)):
+        chunk = audio[start : start + chunk_size]
+        chunk_path = chunk_dir / f"chunk_{idx:04d}.wav"
+        if not chunk_path.exists():
+            sf.write(chunk_path, chunk, sr)
+        chunk_paths.append(chunk_path.resolve())
+
+    messages = run_uvr_paths(
+        [SimpleNamespace(name=str(path)) for path in chunk_paths],
+        uvr_vocal_dir,
+        uvr_inst_dir,
+        output_dir / "uvr_tmp",
+        model_name,
+    )
+
+    raw_dirs = (uvr_vocal_dir, uvr_inst_dir)
+    vocal_chunks = []
+    inst_chunks = []
+    for chunk_path in chunk_paths:
+        vocal_raw, instrumental_raw = find_uvr_pair(chunk_path.name, raw_dirs)
+        if vocal_raw is None or instrumental_raw is None:
+            raise RuntimeError(f"UVR chunk output missing for {chunk_path.name}.")
+        vocal_audio, vocal_sr = sf.read(vocal_raw, always_2d=True)
+        inst_audio, inst_sr = sf.read(instrumental_raw, always_2d=True)
+        if vocal_sr != sr or inst_sr != sr:
+            raise RuntimeError(
+                f"Unexpected UVR chunk sample rate for {chunk_path.name}: "
+                f"vocal={vocal_sr}, instrumental={inst_sr}, expected={sr}"
+            )
+        vocal_chunks.append(vocal_audio)
+        inst_chunks.append(inst_audio)
+
+    vocal_path = output_dir / "vocals.wav"
+    instrumental_path = output_dir / "instrumental.wav"
+    sf.write(vocal_path, np.concatenate(vocal_chunks, axis=0)[: len(audio)], sr)
+    sf.write(instrumental_path, np.concatenate(inst_chunks, axis=0)[: len(audio)], sr)
+    return vocal_path, instrumental_path, messages
+
+
+def run_uvr_split_for_model(
+    input_audio: Path, output_dir: Path, model_name: str
+) -> Tuple[Path, Path]:
     uvr_vocal_dir = output_dir / "uvr_vocal_raw"
     uvr_inst_dir = output_dir / "uvr_inst_raw"
     uvr_vocal_dir.mkdir(parents=True, exist_ok=True)
@@ -301,35 +440,127 @@ def run_uvr_split(input_audio: Path, output_dir: Path) -> Tuple[Path, Path]:
     if vocal_path.exists() and instrumental_path.exists():
         return vocal_path, instrumental_path
 
-    existing_vocal = sorted(uvr_vocal_dir.glob(f"vocal_{input_audio.name}*.wav"))
-    existing_inst = sorted(uvr_inst_dir.glob(f"instrument_{input_audio.name}*.wav"))
+    raw_dirs = (uvr_vocal_dir, uvr_inst_dir)
+    existing_vocal, existing_inst = find_uvr_pair(input_audio.name, raw_dirs)
     if existing_vocal and existing_inst:
-        shutil.copy2(existing_vocal[-1], vocal_path)
-        shutil.copy2(existing_inst[-1], instrumental_path)
+        shutil.copy2(existing_vocal, vocal_path)
+        shutil.copy2(existing_inst, instrumental_path)
         return vocal_path, instrumental_path
 
-    messages: List[str] = []
+    audio_info = sf.info(input_audio)
+    if audio_info.duration > 90:
+        vocal_path, instrumental_path, _ = run_chunked_uvr_split(
+            input_audio,
+            output_dir,
+            uvr_vocal_dir,
+            uvr_inst_dir,
+            model_name,
+        )
+        return vocal_path, instrumental_path
+
     paths = [SimpleNamespace(name=str(input_audio))]
-    for message in uvr(
-        UVR_MODEL,
-        "",
-        str(uvr_vocal_dir),
-        paths,
-        str(uvr_inst_dir),
-        10,
-        "wav",
-    ):
-        if message:
-            messages.append(message)
+    messages = run_uvr_paths(
+        paths, uvr_vocal_dir, uvr_inst_dir, output_dir / "uvr_tmp", model_name
+    )
 
-    if not any("Success" in message for message in messages):
-        raise RuntimeError("UVR split did not report success.")
+    vocal_raw = None
+    instrumental_raw = None
+    deadline = time.time() + 8.0
+    while time.time() < deadline:
+        vocal_raw, instrumental_raw = find_uvr_pair(input_audio.name, raw_dirs)
+        if vocal_raw and instrumental_raw:
+            break
+        time.sleep(0.25)
 
-    vocal_raw = find_single_file(uvr_vocal_dir, f"vocal_{input_audio.name}*.wav")
-    instrumental_raw = find_single_file(uvr_inst_dir, f"instrument_{input_audio.name}*.wav")
+    if vocal_raw is None or instrumental_raw is None:
+        success_reported = any("Success" in message for message in messages)
+        details = "\n".join(messages[-3:]).strip()
+        if success_reported:
+            raise RuntimeError(
+                "UVR reported success but output files were not found."
+                + (f"\nRecent messages:\n{details}" if details else "")
+            )
+        raise RuntimeError(
+            "UVR split did not produce output files."
+            + (f"\nRecent messages:\n{details}" if details else "")
+        )
+
     shutil.copy2(vocal_raw, vocal_path)
     shutil.copy2(instrumental_raw, instrumental_path)
     return vocal_path, instrumental_path
+
+
+def score_uvr_vocal_candidate(vocal_path: Path) -> dict:
+    audio, sr = librosa.load(vocal_path, sr=None, mono=True)
+    intervals = merge_intervals(librosa.effects.split(audio, top_db=TOP_DB), sr)
+    voiced_samples = sum(end - start for start, end in intervals)
+    duration_samples = max(len(audio), 1)
+    return {
+        "coverage": voiced_samples / duration_samples,
+        "rms": float(np.sqrt(np.mean(audio**2))) if audio.size else 0.0,
+        "peak": float(np.max(np.abs(audio))) if audio.size else 0.0,
+    }
+
+
+def choose_auto_uvr_model(input_audio: Path, output_dir: Path) -> str:
+    audio_info = sf.info(input_audio)
+    audio, sr = sf.read(input_audio, always_2d=True, dtype="float32")
+    sample_len = min(len(audio), int(60.0 * sr))
+    sample_path = output_dir / "uvr_auto_sample.wav"
+    sf.write(sample_path, audio[:sample_len], sr)
+
+    metrics = {}
+    for model_name in UVR_AUTO_CANDIDATES:
+        candidate_dir = output_dir / "uvr_auto" / model_name
+        vocal_path, instrumental_path = run_uvr_split_for_model(
+            sample_path, candidate_dir, model_name
+        )
+        metrics[model_name] = score_uvr_vocal_candidate(vocal_path)
+
+    hp5 = metrics.get("HP5_only_main_vocal", {})
+    hp3 = metrics.get("HP3_all_vocals", {})
+    hp3_coverage = float(hp3.get("coverage", 0.0))
+    hp5_coverage = float(hp5.get("coverage", 0.0))
+    hp3_looks_continuous = hp3_coverage > 0.78
+    hp5_keeps_enough_vocal = hp5_coverage > 0.10
+    hp5_reduces_bleed = hp5_coverage <= hp3_coverage - 0.10
+    hp3_strong_music_bleed = hp3_coverage >= 0.90 and hp5_coverage <= 0.82
+    if hp3_looks_continuous and hp5_keeps_enough_vocal and (
+        hp5_reduces_bleed or hp3_strong_music_bleed
+    ):
+        selected_model = "HP5_only_main_vocal"
+        reason = "HP3 vocal track looked nearly continuous; HP5 reduced likely music bleed."
+    else:
+        selected_model = "HP3_all_vocals"
+        reason = "HP3 did not show strong continuous-vocal over-detection on the sample."
+
+    metadata = {
+        "selected_model": selected_model,
+        "reason": reason,
+        "sample_seconds": sample_len / sr if sr else 0.0,
+        "source_seconds": audio_info.duration,
+        "metrics": metrics,
+    }
+    with open(output_dir / "uvr_auto_selection.json", "w", encoding="utf-8") as f:
+        json.dump(metadata, f, ensure_ascii=False, indent=2)
+
+    return selected_model
+
+
+def run_auto_uvr_split(input_audio: Path, output_dir: Path) -> Tuple[Path, Path]:
+    vocal_path = output_dir / "vocals.wav"
+    instrumental_path = output_dir / "instrumental.wav"
+    if vocal_path.exists() and instrumental_path.exists():
+        return vocal_path, instrumental_path
+
+    selected_model = choose_auto_uvr_model(input_audio, output_dir)
+    return run_uvr_split_for_model(input_audio, output_dir, selected_model)
+
+
+def run_uvr_split(input_audio: Path, output_dir: Path) -> Tuple[Path, Path]:
+    if UVR_MODEL == "auto":
+        return run_auto_uvr_split(input_audio, output_dir)
+    return run_uvr_split_for_model(input_audio, output_dir, UVR_MODEL)
 
 
 def merge_intervals(intervals: np.ndarray, sr: int) -> List[Tuple[int, int]]:
@@ -347,17 +578,50 @@ def merge_intervals(intervals: np.ndarray, sr: int) -> List[Tuple[int, int]]:
     return merged
 
 
-def split_long_interval(start: int, end: int, sr: int) -> List[Tuple[int, int]]:
+def split_long_interval(
+    audio: np.ndarray,
+    start: int,
+    end: int,
+    sr: int,
+) -> List[Tuple[int, int]]:
     duration_sec = (end - start) / sr
     if duration_sec <= MAX_SEGMENT_SEC:
         return [(start, end)]
 
     target_chunk = int(TARGET_CHUNK_SEC * sr)
+    max_chunk = int(MAX_SEGMENT_SEC * sr)
+    min_chunk = int(6.0 * sr)
     min_tail = int(5.0 * sr)
     chunks: List[Tuple[int, int]] = []
     cursor = start
-    while end - cursor > int(MAX_SEGMENT_SEC * sr):
-        chunk_end = min(cursor + target_chunk, end)
+
+    frame_length = 2048
+    hop_length = 512
+    rms = librosa.feature.rms(
+        y=audio,
+        frame_length=frame_length,
+        hop_length=hop_length,
+        center=True,
+    )[0]
+    frame_times = librosa.frames_to_samples(np.arange(len(rms)), hop_length=hop_length)
+
+    while end - cursor > max_chunk:
+        preferred = cursor + target_chunk
+        search_start = max(cursor + min_chunk, preferred - int(5.0 * sr))
+        search_end = min(cursor + max_chunk, preferred + int(5.0 * sr), end - min_tail)
+        if search_end <= search_start:
+            chunk_end = min(preferred, end)
+        else:
+            mask = (frame_times >= search_start) & (frame_times <= search_end)
+            if np.any(mask):
+                candidate_frames = np.flatnonzero(mask)
+                best_frame = candidate_frames[np.argmin(rms[candidate_frames])]
+                chunk_end = int(frame_times[best_frame])
+            else:
+                chunk_end = min(preferred, end)
+
+        if chunk_end <= cursor:
+            chunk_end = min(cursor + target_chunk, end)
         chunks.append((cursor, chunk_end))
         cursor = chunk_end
     if chunks and (end - cursor) < min_tail:
@@ -420,7 +684,7 @@ def detect_segments(vocal_path: Path) -> Tuple[np.ndarray, int, List[Tuple[int, 
             continue
         start = max(0, start - pad)
         end = min(len(audio), end + pad)
-        intervals.extend(split_long_interval(start, end, sr))
+        intervals.extend(split_long_interval(audio, start, end, sr))
     intervals = merge_short_intervals(intervals, sr)
     return audio, sr, intervals
 
@@ -766,7 +1030,7 @@ def instantiate_vc(model_name: str) -> VC:
 
 
 def convert_with_vc(
-    vc: VC, model_name: str, index_path: Path, input_path: Path, params: dict
+    vc: VC, model_name: str, index_path: str | Path, input_path: Path, params: dict
 ) -> Tuple[int, np.ndarray, str]:
     info, audio = vc.vc_single(
         0,
@@ -810,6 +1074,31 @@ def fit_to_length(audio: np.ndarray, target_len: int) -> np.ndarray:
     if audio.shape[0] > target_len:
         return audio[:target_len]
     return np.pad(audio, (0, target_len - audio.shape[0]))
+
+
+def resolve_index_path(index_name: str) -> str:
+    index_name = (index_name or "").strip()
+    if not index_name:
+        return ""
+    index_path = Path(index_name)
+    if not index_path.is_absolute():
+        index_path = REPO_ROOT / "assets" / "indices" / index_name
+    if index_path.is_dir():
+        return ""
+    return str(index_path)
+
+
+def apply_edge_fade(audio: np.ndarray, sr: int) -> np.ndarray:
+    if audio.size == 0:
+        return audio
+    fade_len = min(int(SEGMENT_EDGE_FADE_SEC * sr), audio.shape[0] // 3)
+    if fade_len <= 1:
+        return audio
+    faded = audio.astype(np.float32, copy=True)
+    fade_in = np.linspace(0.0, 1.0, fade_len, dtype=np.float32)
+    faded[:fade_len] *= fade_in
+    faded[-fade_len:] *= fade_in[::-1]
+    return faded
 
 
 def write_json(path: Path, payload: list[dict]) -> None:
@@ -875,7 +1164,12 @@ def process_audio(
     report(0.28, f"分析音高与音色，初始片段 {len(intervals)} 段")
     rmvpe = create_rmvpe(Config())
     intervals = merge_adjacent_same_route(mono_vocal, vocal_sr, intervals, rmvpe)
-    report(0.36, f"片段合并完成，待处理 {len(intervals)} 段")
+    analyzed_segments = analyze_intervals(mono_vocal, vocal_sr, intervals, rmvpe)
+    absorb_short_passthrough_segments(analyzed_segments, vocal_sr)
+    analyzed_segments = merge_context_absorbed_segments(
+        mono_vocal, vocal_sr, analyzed_segments
+    )
+    report(0.36, f"片段合并完成，待处理 {len(analyzed_segments)} 段")
     report(0.42, "加载男声与女声模型")
     male_vc = instantiate_vc(MALE_MODEL)
     female_vc = instantiate_vc(FEMALE_MODEL)
@@ -885,18 +1179,8 @@ def process_audio(
     )
     decisions: List[SegmentDecision] = []
 
-    male_index_path = Path(MALE_INDEX)
-    if not male_index_path.is_absolute():
-        male_index_path = REPO_ROOT / "assets" / "indices" / MALE_INDEX
-    female_index_path = Path(FEMALE_INDEX)
-    if not female_index_path.is_absolute():
-        female_index_path = REPO_ROOT / "assets" / "indices" / FEMALE_INDEX
-
-    analyzed_segments = analyze_intervals(mono_vocal, vocal_sr, intervals, rmvpe)
-    absorb_short_passthrough_segments(analyzed_segments)
-    analyzed_segments = merge_context_absorbed_segments(
-        mono_vocal, vocal_sr, analyzed_segments
-    )
+    male_index_path = resolve_index_path(MALE_INDEX)
+    female_index_path = resolve_index_path(FEMALE_INDEX)
 
     total_segments = max(len(analyzed_segments), 1)
     for segment_id, segment_meta in enumerate(analyzed_segments):
@@ -952,6 +1236,7 @@ def process_audio(
                 )
             target_len = int(round(duration_sec * instrumental_sr))
             segment_audio = fit_to_length(segment_audio, target_len).astype(np.float32)
+            segment_audio = apply_edge_fade(segment_audio, instrumental_sr)
             start_out = int(round(start_sec * instrumental_sr))
             end_out = min(start_out + target_len, converted_vocals.shape[0])
             usable = segment_audio[: max(0, end_out - start_out)]
@@ -1031,6 +1316,7 @@ def process_audio(
         target_len = int(round(duration_sec * instrumental_sr))
         segment_audio = fit_to_length(segment_audio, target_len)
         segment_audio = segment_audio.astype(np.float32)
+        segment_audio = apply_edge_fade(segment_audio, instrumental_sr)
 
         output_segment_path = segment_outputs / f"segment_{segment_id:04d}_{route}.wav"
         sf.write(output_segment_path, segment_audio, instrumental_sr)

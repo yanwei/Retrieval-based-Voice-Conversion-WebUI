@@ -26,10 +26,37 @@ UPLOAD_ROOT = APP_ROOT / "uploads"
 JOB_ROOT = APP_ROOT / "jobs"
 HOST = "127.0.0.1"
 PORT = 7867
+UVR_MODELS = [
+    "auto",
+    "HP5_only_main_vocal",
+    "HP3_all_vocals",
+    "HP2_all_vocals",
+]
+DEFAULT_MALE_MODEL = "Myaz.pth"
+DEFAULT_FEMALE_MODEL = "haoshengyin.pth"
 
 VC_CACHE = {}
 JOBS = {}
 JOBS_LOCK = threading.Lock()
+MODEL_PRESETS = {
+    "mygf-jack.pth": {
+        "f0_up_key": 0,
+        "index_rate": 0.0,
+        "rms_mix_rate": 0.86,
+    },
+    "haoshengyin.pth": {
+        "f0_up_key": 0,
+        "index_rate": 0.75,
+        "protect": 0.25,
+        "rms_mix_rate": 1.25,
+    },
+    "Myaz.pth": {
+        "f0_up_key": 0,
+        "index_rate": 0.75,
+        "protect": 0.25,
+        "rms_mix_rate": 1.25,
+    },
+}
 
 
 def ensure_environment() -> None:
@@ -91,6 +118,12 @@ def default_index_for_model(model_name: str) -> str:
         ):
             return index_path
     return ""
+
+
+def default_model_choice(models: list[str], preferred: str) -> str:
+    if preferred in models:
+        return preferred
+    return models[0] if models else ""
 
 
 def get_vc(model_name: str) -> VC:
@@ -280,6 +313,7 @@ def run_long_job(job_id: str, payload: dict) -> None:
         mixed_audio.MALE_INDEX = male_index
         mixed_audio.FEMALE_MODEL = female_model
         mixed_audio.FEMALE_INDEX = female_index
+        mixed_audio.UVR_MODEL = payload["uvr_model"]
         mixed_audio.READING_MODE = bool(payload["reading_mode"])
         if not payload["speaker_embedding"]:
             mixed_audio.SPEAKER_ENCODER_FAILED = True
@@ -353,12 +387,8 @@ def index():
         models=models,
         indices=list_indices(),
         default_model=models[0] if models else "",
-        default_male="man-B.pth" if "man-B.pth" in models else (models[0] if models else ""),
-        default_female=(
-            "splicegirl_v3_e130_s26520.pth"
-            if "splicegirl_v3_e130_s26520.pth" in models
-            else (models[0] if models else "")
-        ),
+        default_male=default_model_choice(models, DEFAULT_MALE_MODEL),
+        default_female=default_model_choice(models, DEFAULT_FEMALE_MODEL),
     )
 
 
@@ -369,10 +399,11 @@ def api_options():
         {
             "models": models,
             "indices": list_indices(),
-            "default_male": "man-B.pth" if "man-B.pth" in models else "",
-            "default_female": "splicegirl_v3_e130_s26520.pth"
-            if "splicegirl_v3_e130_s26520.pth" in models
-            else "",
+            "model_presets": MODEL_PRESETS,
+            "uvr_models": UVR_MODELS,
+            "default_uvr_model": UVR_MODELS[0],
+            "default_male": default_model_choice(models, DEFAULT_MALE_MODEL),
+            "default_female": default_model_choice(models, DEFAULT_FEMALE_MODEL),
         }
     )
 
@@ -425,6 +456,9 @@ def api_jobs_long():
         return jsonify({"error": "缺少音频文件"}), 400
     job_id, job_dir = create_job("long", file_storage.filename or "audio")
     input_path = save_uploaded_file(file_storage, job_dir)
+    uvr_model = request.form.get("uvr_model", UVR_MODELS[0])
+    if uvr_model not in UVR_MODELS:
+        uvr_model = UVR_MODELS[0]
     payload = {
         "job_dir": str(job_dir),
         "input_path": input_path,
@@ -440,6 +474,7 @@ def api_jobs_long():
         "female_index_rate": float(request.form.get("female_index_rate", 0.75)),
         "female_protect": float(request.form.get("female_protect", 0.25)),
         "female_rms_mix_rate": float(request.form.get("female_rms_mix_rate", 0.18)),
+        "uvr_model": uvr_model,
         "f0_method": request.form.get("f0_method", "rmvpe"),
         "filter_radius": int(request.form.get("filter_radius", 3)),
         "resample_sr": int(request.form.get("resample_sr", 0)),

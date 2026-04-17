@@ -22,49 +22,50 @@
       color: var(--text);
     }
     .wrap {
-      max-width: 1180px;
+      width: 100%;
+      max-width: none;
       margin: 0 auto;
-      padding: 24px;
+      padding: 16px 18px;
     }
-    h1 { margin: 0 0 8px; font-size: 32px; }
-    p.desc { margin: 0 0 24px; color: var(--muted); }
-    .tabs { display: flex; gap: 10px; margin-bottom: 18px; }
+    h1 { margin: 0 0 6px; font-size: 24px; }
+    p.desc { margin: 0 0 12px; color: var(--muted); font-size: 13px; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 12px; }
     .tab-btn {
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.75);
       color: var(--text);
       border-radius: 999px;
-      padding: 10px 16px;
+      padding: 7px 13px;
       cursor: pointer;
     }
     .tab-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
     .tab { display: none; }
     .tab.active { display: block; }
-    .grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 18px; }
+    .grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(390px, 0.7fr); gap: 14px; }
     .panel {
       background: rgba(255,250,242,0.92);
       border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 18px;
-      box-shadow: 0 14px 40px rgba(58, 38, 16, 0.08);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 10px 28px rgba(58, 38, 16, 0.07);
       backdrop-filter: blur(10px);
     }
-    .section-title { margin: 0 0 14px; font-size: 18px; }
-    .field { margin-bottom: 14px; }
+    .section-title { margin: 0 0 12px; font-size: 18px; }
+    .field { margin-bottom: 12px; }
     .field label { display: block; margin-bottom: 6px; font-weight: 600; }
-    .hint { color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .hint { color: var(--muted); font-size: 12px; margin-top: 5px; line-height: 1.35; }
     input[type="file"], select, input[type="number"], input[type="text"], textarea {
       width: 100%;
       border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 10px 12px;
+      border-radius: 10px;
+      padding: 9px 11px;
       font-size: 14px;
       background: #fffdf9;
     }
     input[type="range"] { width: 100%; }
     .range-row {
       display: grid;
-      grid-template-columns: 1fr 90px;
+      grid-template-columns: minmax(0, 1fr) 82px;
       gap: 10px;
       align-items: center;
     }
@@ -78,11 +79,54 @@
       grid-template-columns: 1fr 1fr 1fr;
       gap: 14px;
     }
-    .row { display: flex; gap: 10px; align-items: center; }
+    .four-col {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .toggle-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+    .route-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .compact-source {
+      display: grid;
+      grid-template-columns: minmax(360px, 0.9fr) minmax(420px, 1.4fr);
+      gap: 14px;
+      align-items: center;
+    }
+    .compact-source > div {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+    }
+    .compact-source label { margin: 0; }
+    .compact-source .hint { display: none; }
+    .route-fields {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px 14px;
+      align-items: end;
+    }
+    .status-audios {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+    .row { display: flex; gap: 8px; align-items: center; }
     .btn {
       border: none;
-      border-radius: 14px;
-      padding: 12px 18px;
+      border-radius: 12px;
+      padding: 10px 16px;
       background: var(--accent);
       color: white;
       cursor: pointer;
@@ -104,14 +148,15 @@
       background: linear-gradient(90deg, #0f766e, #14b8a6);
       transition: width 0.25s ease;
     }
-    .status { font-size: 14px; color: var(--muted); min-height: 22px; }
+    .status { font-size: 14px; color: var(--muted); min-height: 20px; }
     .log {
-      min-height: 160px;
+      min-height: 140px;
+      max-height: 36vh;
       white-space: pre-wrap;
       background: #fffdf9;
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px;
+      border-radius: 12px;
+      padding: 10px;
       overflow: auto;
       font-family: ui-monospace, SFMono-Regular, monospace;
       font-size: 13px;
@@ -123,28 +168,34 @@
       text-decoration: none;
       font-weight: 600;
     }
-    .audio-block { margin-top: 14px; }
+    .audio-block { margin-top: 12px; }
     .audio-title {
       margin: 0 0 4px;
       font-size: 15px;
       font-weight: 700;
     }
     .audio-note {
-      margin: 0 0 8px;
+      margin: 0 0 4px;
       color: var(--muted);
       font-size: 13px;
     }
-    audio { width: 100%; margin-top: 10px; }
+    audio { width: 100%; height: 36px; margin-top: 7px; }
     details {
       border: 1px dashed var(--line);
       border-radius: 14px;
-      padding: 10px 12px;
-      margin-bottom: 14px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
       background: rgba(255,255,255,0.45);
     }
-    summary { cursor: pointer; font-weight: 700; }
-    @media (max-width: 920px) {
-      .grid, .two-col, .three-col { grid-template-columns: 1fr; }
+    summary { cursor: pointer; font-weight: 700; margin-bottom: 10px; }
+    #tab-long .section-title { margin-bottom: 10px; }
+    #tab-long .field { margin-bottom: 10px; }
+    #tab-long .audio-note { display: none; }
+    #tab-long .btn { width: 100%; margin-top: 12px; }
+    #tab-long details { padding-bottom: 10px; }
+    #tab-long details .field { margin-bottom: 8px; }
+    @media (max-width: 1100px) {
+      .grid, .two-col, .three-col, .four-col, .toggle-row, .route-grid, .compact-source, .route-fields, .status-audios { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -217,8 +268,8 @@
             <div class="field">
               <label for="single-rms">rms_mix_rate</label>
               <div class="range-row">
-                <input id="single-rms" type="range" min="0" max="1" step="0.01" value="0.18">
-                <input id="single-rms-value" type="number" min="0" max="1" step="0.01" value="0.18">
+                <input id="single-rms" type="range" min="0" max="1.5" step="0.01" value="0.18">
+                <input id="single-rms-value" type="number" min="0" max="1.5" step="0.01" value="0.18">
               </div>
             </div>
           </div>
@@ -259,13 +310,20 @@
       <div class="grid">
         <div class="panel">
           <h2 class="section-title">长音频与音乐处理</h2>
-          <div class="field">
-            <label for="long-audio">原始音频文件</label>
-            <input id="long-audio" type="file" accept="audio/*">
-            <div class="hint">适合歌曲、带伴奏、男女声混合、课本长音频。</div>
+          <div class="field compact-source">
+            <div>
+              <label for="long-audio">原始音频文件</label>
+              <input id="long-audio" type="file" accept="audio/*">
+            </div>
             <audio id="long-original" controls></audio>
+            <div class="hint">适合歌曲、带伴奏、男女声混合、课本长音频。</div>
           </div>
-          <div class="three-col">
+          <div class="four-col">
+            <div class="field">
+              <label for="long-uvr-model">人声分离模型</label>
+              <select id="long-uvr-model"></select>
+              <div class="hint">默认 Auto 会先抽样比较 HP5/HP3；音乐误入多时偏向 HP5，否则偏向 HP3。</div>
+            </div>
             <div class="field">
               <label for="long-f0-method">音高算法</label>
               <select id="long-f0-method">
@@ -290,10 +348,10 @@
               </div>
             </div>
           </div>
-          <div class="field">
-            <label class="row"><input id="long-remix" type="checkbox" checked> 分离人声后转换并混回伴奏</label>
-          </div>
-          <div class="two-col">
+          <div class="toggle-row">
+            <div class="field">
+              <label class="row"><input id="long-remix" type="checkbox" checked> 分离人声后转换并混回伴奏</label>
+            </div>
             <div class="field">
               <label class="row"><input id="long-reading-mode" type="checkbox" checked> 课本朗读模式</label>
               <div class="hint">更积极地把“单词 + 停顿 + 单词”合并成读词簇。</div>
@@ -304,13 +362,12 @@
             </div>
           </div>
 
+          <div class="route-grid">
           <details open>
             <summary>男声输入分路</summary>
-            <div class="two-col">
+            <div class="route-fields">
               <div class="field"><label for="male-model">模型</label><select id="male-model"></select></div>
               <div class="field"><label for="male-index">索引</label><select id="male-index"></select></div>
-            </div>
-            <div class="three-col">
               <div class="field">
                 <label for="male-f0-up-key">变调</label>
                 <div class="range-row">
@@ -332,23 +389,21 @@
                   <input id="male-protect-value" type="number" min="0" max="0.5" step="0.01" value="0.30">
                 </div>
               </div>
-            </div>
-            <div class="field">
-              <label for="male-rms">rms_mix_rate</label>
-              <div class="range-row">
-                <input id="male-rms" type="range" min="0" max="1" step="0.01" value="0.20">
-                <input id="male-rms-value" type="number" min="0" max="1" step="0.01" value="0.20">
+              <div class="field">
+                <label for="male-rms">rms_mix_rate</label>
+                <div class="range-row">
+                  <input id="male-rms" type="range" min="0" max="1.5" step="0.01" value="0.20">
+                  <input id="male-rms-value" type="number" min="0" max="1.5" step="0.01" value="0.20">
+                </div>
               </div>
             </div>
           </details>
 
-          <details>
+          <details open>
             <summary>女声输入分路</summary>
-            <div class="two-col">
+            <div class="route-fields">
               <div class="field"><label for="female-model">模型</label><select id="female-model"></select></div>
               <div class="field"><label for="female-index">索引</label><select id="female-index"></select></div>
-            </div>
-            <div class="three-col">
               <div class="field">
                 <label for="female-f0-up-key">变调</label>
                 <div class="range-row">
@@ -370,15 +425,16 @@
                   <input id="female-protect-value" type="number" min="0" max="0.5" step="0.01" value="0.25">
                 </div>
               </div>
-            </div>
-            <div class="field">
-              <label for="female-rms">rms_mix_rate</label>
-              <div class="range-row">
-                <input id="female-rms" type="range" min="0" max="1" step="0.01" value="0.18">
-                <input id="female-rms-value" type="number" min="0" max="1" step="0.01" value="0.18">
+              <div class="field">
+                <label for="female-rms">rms_mix_rate</label>
+                <div class="range-row">
+                  <input id="female-rms" type="range" min="0" max="1.5" step="0.01" value="0.18">
+                  <input id="female-rms-value" type="number" min="0" max="1.5" step="0.01" value="0.18">
+                </div>
               </div>
             </div>
           </details>
+          </div>
           <button id="long-submit" class="btn secondary">开始长音频处理</button>
         </div>
         <div class="panel">
@@ -386,6 +442,7 @@
           <div class="progress"><div id="long-progress-bar" class="progress-bar"></div></div>
           <div id="long-status" class="status">等待开始</div>
           <div id="long-log" class="log"></div>
+          <div class="status-audios">
           <div class="audio-block">
             <p class="audio-title">转换后人声</p>
             <p class="audio-note">只有人声轨，不带伴奏，用来检查变声本身是否自然。</p>
@@ -395,6 +452,7 @@
             <p class="audio-title">最终成品</p>
             <p class="audio-note">把转换后人声混回伴奏后的结果，更接近最终可用成品。</p>
             <audio id="long-result" controls></audio>
+          </div>
           </div>
           <div id="long-downloads" class="downloads"></div>
         </div>

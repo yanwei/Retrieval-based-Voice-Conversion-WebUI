@@ -19,6 +19,12 @@ function setRangePair(rangeId, valueId) {
   value.addEventListener("input", () => sync(value, range));
 }
 
+function setRangeValue(rangeId, valueId, value) {
+  const normalized = String(value);
+  $(rangeId).value = normalized;
+  $(valueId).value = normalized;
+}
+
 function setAudioPreview(fileInputId, audioId) {
   $(fileInputId).addEventListener("change", (event) => {
     const file = event.target.files[0];
@@ -68,9 +74,10 @@ async function loadOptions() {
   fillSelect($("single-index"), data.indices, "");
   fillSelect($("male-index"), data.indices, "");
   fillSelect($("female-index"), data.indices, "");
-  await refreshIndexForModel("single-model", "single-index");
-  await refreshIndexForModel("male-model", "male-index");
-  await refreshIndexForModel("female-model", "female-index");
+  fillSelect($("long-uvr-model"), data.uvr_models || [], data.default_uvr_model || "");
+  await handleModelChange("single-model", "single-index", "single");
+  await handleModelChange("male-model", "male-index", "male");
+  await handleModelChange("female-model", "female-index", "female");
 }
 
 async function refreshIndexForModel(modelSelectId, indexSelectId) {
@@ -78,6 +85,29 @@ async function refreshIndexForModel(modelSelectId, indexSelectId) {
   const result = await fetchJson(`/api/default-index?model=${encodeURIComponent(model)}`);
   const select = $(indexSelectId);
   fillSelect(select, state.options.indices, result.index || "");
+}
+
+function applyModelPreset(modelSelectId, prefix) {
+  const model = $(modelSelectId).value;
+  const preset = (state.options.model_presets || {})[model];
+  if (!preset) return;
+  if (preset.f0_up_key !== undefined) {
+    setRangeValue(`${prefix}-f0-up-key`, `${prefix}-f0-up-key-value`, preset.f0_up_key);
+  }
+  if (preset.index_rate !== undefined) {
+    setRangeValue(`${prefix}-index-rate`, `${prefix}-index-rate-value`, preset.index_rate);
+  }
+  if (preset.protect !== undefined) {
+    setRangeValue(`${prefix}-protect`, `${prefix}-protect-value`, preset.protect);
+  }
+  if (preset.rms_mix_rate !== undefined) {
+    setRangeValue(`${prefix}-rms`, `${prefix}-rms-value`, preset.rms_mix_rate);
+  }
+}
+
+async function handleModelChange(modelSelectId, indexSelectId, prefix) {
+  await refreshIndexForModel(modelSelectId, indexSelectId);
+  applyModelPreset(modelSelectId, prefix);
 }
 
 function setProgress(prefix, progress, message, log, resultAudio, downloads, extraAudio, etaText) {
@@ -197,6 +227,7 @@ async function submitLong() {
   form.append("female_index_rate", $("female-index-rate").value);
   form.append("female_protect", $("female-protect").value);
   form.append("female_rms_mix_rate", $("female-rms").value);
+  form.append("uvr_model", $("long-uvr-model").value);
   form.append("f0_method", $("long-f0-method").value);
   form.append("filter_radius", $("long-filter-radius").value);
   form.append("resample_sr", $("long-resample-sr").value);
@@ -248,9 +279,9 @@ window.addEventListener("DOMContentLoaded", async () => {
   setAudioPreview("long-audio", "long-original");
 
   await loadOptions();
-  $("single-model").addEventListener("change", () => refreshIndexForModel("single-model", "single-index"));
-  $("male-model").addEventListener("change", () => refreshIndexForModel("male-model", "male-index"));
-  $("female-model").addEventListener("change", () => refreshIndexForModel("female-model", "female-index"));
+  $("single-model").addEventListener("change", () => handleModelChange("single-model", "single-index", "single"));
+  $("male-model").addEventListener("change", () => handleModelChange("male-model", "male-index", "male"));
+  $("female-model").addEventListener("change", () => handleModelChange("female-model", "female-index", "female"));
   $("single-submit").addEventListener("click", () => submitSingle().catch((err) => {
     $("single-status").textContent = `Error: ${err.message}`;
   }));
