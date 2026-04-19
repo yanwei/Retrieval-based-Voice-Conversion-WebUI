@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample Library Labeler</title>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 24px; color: #1f2937; }
+      .layout { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: start; }
+      .panel { border: 1px solid #d1d5db; border-radius: 12px; padding: 16px; background: #fff; }
+      .meta { font-size: 14px; line-height: 1.6; white-space: pre-wrap; }
+      label { display: block; margin: 12px 0 6px; font-weight: 600; }
+      select, button { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1; }
+      button { cursor: pointer; background: #111827; color: #fff; border-color: #111827; }
+      .actions { display: flex; gap: 12px; margin-top: 16px; }
+      audio { width: 100%; margin-top: 8px; }
+      .counter { margin-bottom: 12px; color: #6b7280; }
+      .player-block + .player-block { margin-top: 16px; }
+      .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7280; margin-bottom: 4px; }
+      .title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+      .path { font-size: 13px; color: #4b5563; word-break: break-all; }
+      .summary { margin: 12px 0 4px; font-size: 14px; color: #374151; }
+      .hint { margin: 8px 0 4px; font-size: 13px; color: #6b7280; }
+      .hint-emphasis { color: #92400e; }
+      .details { margin-top: 16px; border-top: 1px solid #e5e7eb; padding-top: 16px; }
+      details summary { cursor: pointer; font-weight: 600; }
+      .detail-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 12px; font-size: 14px; color: #374151; }
+      .detail-grid code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+      @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <h1>Sample Library Labeler</h1>
+    <div class="counter" id="counter">加载中</div>
+    <div class="layout">
+      <section class="panel">
+        <div class="player-block">
+          <div class="eyebrow">原始样本</div>
+          <div id="sampleTitle" class="title"></div>
+          <div id="samplePath" class="path"></div>
+          <audio id="player" controls preload="metadata"></audio>
+        </div>
+        <div class="player-block" id="outputBlock" style="display:none">
+          <div class="eyebrow">当前输出对照</div>
+          <div id="outputSummary" class="summary"></div>
+          <audio id="outputPlayer" controls preload="metadata"></audio>
+        </div>
+      </section>
+      <section class="panel">
+        <h2>标签</h2>
+        <div class="hint">以下内容是系统预填标签，不一定正确。以你的人工判断为准。</div>
+        <label for="language">语言</label>
+        <select id="language">
+          <option value="zh">中文</option>
+          <option value="en">英文</option>
+          <option value="mixed">混合</option>
+        </select>
+        <label for="speaker_pattern">说话人</label>
+        <select id="speaker_pattern">
+          <option value="single_male">单男声</option>
+          <option value="single_female">单女声</option>
+          <option value="male_female_mixed">男女混合</option>
+          <option value="multi_speaker_other">多人/其他</option>
+        </select>
+        <label for="voice_age">声音年龄</label>
+        <select id="voice_age">
+          <option value="unknown">不确定</option>
+          <option value="adult">成人</option>
+          <option value="child">儿童</option>
+        </select>
+        <label for="music_pattern">音乐</label>
+        <select id="music_pattern">
+          <option value="no_music">无背景音乐</option>
+          <option value="transient_sfx">短提示音/叮当</option>
+          <option value="bgm">有背景音乐</option>
+          <option value="song">歌曲/演唱</option>
+        </select>
+        <div class="hint">极短、极少的提示音或“叮”不算背景音乐。</div>
+        <div class="hint hint-emphasis" id="modeHint"></div>
+        <div class="actions">
+          <button id="saveBtn" type="button">保存并下一条</button>
+        </div>
+        <section class="details">
+          <details>
+            <summary>详细信息</summary>
+            <div id="sampleSummary" class="detail-grid"></div>
+            <pre id="sampleMeta" class="meta"></pre>
+          </details>
+        </section>
+      </section>
+    </div>
+    <script src="/static/sample_library_labeler.js"></script>
+  </body>
+  </html>

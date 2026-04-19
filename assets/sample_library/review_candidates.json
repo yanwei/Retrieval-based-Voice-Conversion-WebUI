@@ -1,0 +1,1635 @@
+[
+  {
+    "sample_id": "tape3a_002013_8530532",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301962_256bfc0f7be011f0b62218c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "quality_gate_fallback",
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/8530532.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_page_301964_e3206a5e61fc11efa3d618c04d251e75",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/candidate/page_301964_e3206a5e61fc11efa3d618c04d251e75.mp3",
+    "source": "book_res_candidate",
+    "language": "en",
+    "duration_bucket": "<1s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "short_speech_or_sfx"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002013_1484551",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301993_4555f48f765a11ef996918c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1484551.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386616",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_a3011061647211ef9b6218c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_male",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386616.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_page_302000_e787406e637c11ef871d18c04d251e75",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/candidate/page_302000_e787406e637c11ef871d18c04d251e75.mp3",
+    "source": "book_res_candidate",
+    "language": "en",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "transient_sfx",
+    "content_type": "word_list",
+    "expected_processing_mode": "single_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "fragmented_or_sfx_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_unit_114485",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/unit_114485.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": ">180s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "music_or_bgm_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357543_b10bfaf0782911f0b99cb32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357543_b10bfaf0782911f0b99cb32a8ac171c2.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "low_confidence"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357472_01640606",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357472_01640606.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "<1s",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "clean_speech_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002013_1484076",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301992_01484076.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1484076.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1482691",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301981_03a5b1b075ac11ef98ab18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1482691.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371783",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301986_01371783.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_male",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371783.mp3"
+  },
+  {
+    "sample_id": "tape3a_002011_unit_114484",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/unit_114484.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": ">180s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "music_or_bgm_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357542_b84df5e1782711f0bc72b32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357542_b84df5e1782711f0bc72b32a8ac171c2.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "low_confidence"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357459_01639675",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357459_01639675.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "<1s",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "clean_speech_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002013_1484074",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301992_01484074.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1484074.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1389981",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_8da18f00652711efb59818c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1389981.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371276",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301972_b3885051646e11efaaa118c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_male",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371276.mp3"
+  },
+  {
+    "sample_id": "tape3a_002011_page_357474_03a463b0782a11f0a456b32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357474_03a463b0782a11f0a456b32a8ac171c2.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "60-180s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "music_or_bgm_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357486_01639838",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357486_01639838.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "<1s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "short_speech_or_sfx"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357456_f5d8208077ea11f08ddfb32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357456_f5d8208077ea11f08ddfb32a8ac171c2.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "clean_speech_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002013_1484073",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301992_01484073.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1484073.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1374726",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_14d65f91646611efab0b18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1374726.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1369531",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301960_bfaef311645b11efb81b18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_male",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1369531.mp3"
+  },
+  {
+    "sample_id": "tape3a_002011_page_357462_0f5edc51780511f08660b32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357462_0f5edc51780511f08660b32a8ac171c2.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "60-180s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "music_or_bgm_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357486_01639825",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357486_01639825.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "<1s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "short_speech_or_sfx"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357456_01639476",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357456_01639476.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "single_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "clean_speech_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002013_1432600",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301974_1b1c3961685811ef987e18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1432600.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1374709",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301999_b526fb40646511efa5bb18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1374709.mp3"
+  },
+  {
+    "sample_id": "tape3a_002011_page_357462_0eb296c0780511f0a0bbb32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357462_0eb296c0780511f0a0bbb32a8ac171c2.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "25-60s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "music_or_bgm_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357470_01640358",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357470_01640358.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "<1s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "no_music",
+    "content_type": "dialogue",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "clean_or_mixed_speech_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002013_1389982",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_8e13ffe1652711ef8c5318c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1389982.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1374706",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301999_f8b9854f62e711ef8a9518c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1374706.mp3"
+  },
+  {
+    "sample_id": "tape3a_002011_page_357457_fc7ac6cf77eb11f0802eb32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357457_fc7ac6cf77eb11f0802eb32a8ac171c2.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "8-25s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "music_or_bgm_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357461_01639812",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357461_01639812.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "<1s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "no_music",
+    "content_type": "dialogue",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "clean_or_mixed_speech_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002013_1389950",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_86acff80652311efbbb818c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1389950.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371845",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301991_9026f0de623311efbde618c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371845.mp3"
+  },
+  {
+    "sample_id": "tape3a_002011_page_357457_fc309e7077eb11f091d4b32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357457_fc309e7077eb11f091d4b32a8ac171c2.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "8-25s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "music_or_bgm_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357459_01639672",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357459_01639672.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "no_music",
+    "content_type": "dialogue",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "clean_or_mixed_speech_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002013_1389943",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_87c65ec0652311ef9bcd18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1389943.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371837",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301990_f6a74d5e647711efa91c18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371837.mp3"
+  },
+  {
+    "sample_id": "tape3a_002011_page_357457_fbf988e177eb11f0a0fcb32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357457_fbf988e177eb11f0a0fcb32a8ac171c2.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "25-60s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "music_or_bgm_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002011_page_357459_01639645",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357459_01639645.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "no_music",
+    "content_type": "dialogue",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "clean_or_mixed_speech_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002013_1389942",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_871cff61652311ef9d8918c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1389942.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371827",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301989_b910b35e647711efb1aa18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371827.mp3"
+  },
+  {
+    "sample_id": "tape3a_002011_page_357456_01639475",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357456_01639475.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "music_or_bgm_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002013_1389941",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_8911ca80652311ef81c118c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1389941.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371814",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301989_b8a56e70647711ef83e918c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371814.mp3"
+  },
+  {
+    "sample_id": "tape3a_002011_page_357456_01639474",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357456_01639474.mp3",
+    "source": "book_res_candidate",
+    "language": "zh",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate",
+    "book_id": "tape3a_002011",
+    "notes": [
+      "music_or_bgm_candidate"
+    ],
+    "output_path": null
+  },
+  {
+    "sample_id": "tape3a_002013_1389787",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_7f6a5a8f652011ef8eae18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1389787.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371808",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301987_d7805dc0647511efa53518c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371808.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1389786",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_7e7e4cde652011ef90ba18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1389786.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371796",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301995_03815df07bf111f0a79018c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371796.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1389785",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_7e1551e1652011ef932d18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1389785.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371779",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301986_a246e0c0647511ef805218c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371779.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1389784",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_7da55200652011efa18318c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1389784.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371769",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301985_2cdd5a2e647511efb86b18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371769.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386958",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_7416e130648111ef820418c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386958.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371764",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301985_2c4252ae647511efaa8d18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371764.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386957",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_73e263ae648111efa6dd18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386957.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371539",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301979_595e65b0647311efb73118c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371539.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386956",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_73ae0d40648111ef8f6218c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386956.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371537",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301979_5901789e647311efb50718c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371537.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386955",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_73771ec0648111efb8f818c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386955.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371536",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301979_58d1dd21647311ef99e318c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371536.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386954",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_7342c84f648111ef96ee18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386954.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371535",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301979_58a48b8f647311efb27818c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371535.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386868",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301964_9fd1b34f647b11efa6d718c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386868.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371534",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301979_5874f00f647311ef8d8d18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371534.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386867",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301964_9f4ea09e647b11ef9c4d18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386867.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371533",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301979_583e018f647311ef9f7318c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371533.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386866",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301964_9ee0eab0647b11ef92b318c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386866.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371532",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301979_5810b000647311efb22a18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371532.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386865",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301964_9e7816c0647b11ef8ece18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386865.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371527",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301979_31dcb521622311efae1218c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371527.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386779",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301991_805dd1a1647811ef92d918c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386779.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371507",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301978_12a4edb0647311efbcc618c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371507.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386776",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301991_7fc53b21647811ef8add18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386776.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371410",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_74835fa1647611ef8e8318c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371410.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386729",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_fc00bcc0647611efbca218c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386729.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371358",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_f4e9880f621711ef81e918c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371358.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386728",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_fbd12140647611efbfdb18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386728.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371328",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_34b390c0647111ef8bca18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371328.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386727",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_fba3cfae647611efa45118c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386727.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371307",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301975_96fb218f647011efba3b18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371307.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386726",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_fb74342e647611ef8ade18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386726.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371298",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301974_5be5f7c0646f11ef8ca618c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371298.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386725",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_fb46e29e647611efbb0718c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386725.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371292",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301974_5b8699b0646f11efb3c818c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371292.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386615",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_a2cf03e1647211ef9e8d18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386615.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371290",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301973_21dfb070646f11ef998718c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371290.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386614",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_a2983c70647211efaa3618c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386614.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1371285",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301973_214e45e1646f11efbbdf18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1371285.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386613",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_3635c3f0647111ef864b18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386613.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1370664",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301966_effb9ccf646a11ef999b18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1370664.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1386593",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301964_153f48a1646811efa11418c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "bgm",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1386593.mp3"
+  },
+  {
+    "sample_id": "tape3a_002013_1370632",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301965_63aae5b0646a11efafae18c04d251e75.mp3",
+    "source": "book_res_error_case",
+    "language": "en",
+    "duration_bucket": "short",
+    "speaker_pattern": "single_female",
+    "music_pattern": "no_music",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "known_failure",
+    "book_id": "tape3a_002013",
+    "notes": [
+      "uncertain_segments"
+    ],
+    "output_path": "/Users/yanwei/dev/namibox/book-res-studio/data/library/book-res/tape3a_002013/track_audio_rvc/1370632.mp3"
+  }
+]

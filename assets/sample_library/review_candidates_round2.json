@@ -1,0 +1,962 @@
+[
+  {
+    "sample_id": "round2_tape2a_002013_unit_114781",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2a_002013/en_multi_speaker_other_bgm/unit_114781.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "en",
+    "duration_bucket": ">180s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape2a_002013",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape2a_002013:unit_114781",
+      "proxy_bucket=tape2a_002013:music_or_bgm_candidate:>180s"
+    ],
+    "duration_seconds": 221.950454
+  },
+  {
+    "sample_id": "round2_tape3a_002002_page_070_8d230240aa6611eb9c65b89a2af90636",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape3a_002002/mixed_multi_speaker_other_bgm/page_070_8d230240aa6611eb9c65b89a2af90636.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "25-60s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape3a_002002",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape3a_002002:page_070",
+      "proxy_bucket=tape3a_002002:music_or_bgm_candidate:25-60s"
+    ],
+    "duration_seconds": 45.167846
+  },
+  {
+    "sample_id": "round2_tape1a_002002_page_014_a33a90e1aae111eb9ef5b89a2af90636",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape1a_002002/mixed_multi_speaker_other_bgm/page_014_a33a90e1aae111eb9ef5b89a2af90636.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape1a_002002",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape1a_002002:page_014",
+      "proxy_bucket=tape1a_002002:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 4.521315
+  },
+  {
+    "sample_id": "round2_tape2a_002013_unit_114767",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2a_002013/en_multi_speaker_other_bgm/unit_114767.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "en",
+    "duration_bucket": "60-180s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape2a_002013",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape2a_002013:unit_114767",
+      "proxy_bucket=tape2a_002013:music_or_bgm_candidate:60-180s"
+    ],
+    "duration_seconds": 136.242698
+  },
+  {
+    "sample_id": "round2_tape1b_002019_page_361194_c8e01f01ef8711f0b9c2b32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape1b_002019/mixed_multi_speaker_other_bgm/page_361194_c8e01f01ef8711f0b9c2b32a8ac171c2.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "8-25s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape1b_002019",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape1b_002019:page_361194",
+      "proxy_bucket=tape1b_002019:music_or_bgm_candidate:8-25s"
+    ],
+    "duration_seconds": 11.795351
+  },
+  {
+    "sample_id": "round2_tape1a_002013_page_304864_d76e9631644311ef9f4e18c04d251e75",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape1a_002013/en_male_female_mixed_no_music/page_304864_d76e9631644311ef9f4e18c04d251e75.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "en",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "no_music",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape1a_002013",
+    "notes": [
+      "clean_or_mixed_speech_candidate",
+      "family=tape1a_002013:page_304864",
+      "target_bucket=tape1a_002013:clean_or_mixed_speech_candidate:1-3s"
+    ],
+    "duration_seconds": 2.365147
+  },
+  {
+    "sample_id": "round2_tape5a_002003_page_78876_71c6a5de0bba11ed8a44a4bb6d450ec3",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape5a_002003/mixed_multi_speaker_other_no_music/page_78876_71c6a5de0bba11ed8a44a4bb6d450ec3.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "<1s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "no_music",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape5a_002003",
+    "notes": [
+      "short_speech_or_sfx",
+      "family=tape5a_002003:page_78876",
+      "proxy_bucket=tape5a_002003:short_speech_or_sfx:<1s"
+    ],
+    "duration_seconds": 0.680249
+  },
+  {
+    "sample_id": "round2_tape6b_002013_unit_103348",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape6b_002013/en_multi_speaker_other_bgm/unit_103348.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "en",
+    "duration_bucket": ">180s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape6b_002013",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape6b_002013:unit_103348",
+      "proxy_bucket=tape6b_002013:music_or_bgm_candidate:>180s"
+    ],
+    "duration_seconds": 653.5978
+  },
+  {
+    "sample_id": "round2_tape6b_002001_page_076_95bca2cff76411eb8a21b89a2af90636",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape6b_002001/mixed_multi_speaker_other_bgm/page_076_95bca2cff76411eb8a21b89a2af90636.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "25-60s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape6b_002001",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape6b_002001:page_076",
+      "proxy_bucket=tape6b_002001:music_or_bgm_candidate:25-60s"
+    ],
+    "duration_seconds": 36.74229
+  },
+  {
+    "sample_id": "round2_tape1b_002014_page_341582_273b2ff0b7a211ef9428bd7e1249b5c0",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape1b_002014/mixed_multi_speaker_other_bgm/page_341582_273b2ff0b7a211ef9428bd7e1249b5c0.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape1b_002014",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape1b_002014:page_341582",
+      "proxy_bucket=tape1b_002014:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 4.219841
+  },
+  {
+    "sample_id": "round2_tape8a_002013_page_595485_8e0c0cf0819511f09c9418c04d251e75",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape8a_002013/en_multi_speaker_other_bgm/page_595485_8e0c0cf0819511f09c9418c04d251e75.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "en",
+    "duration_bucket": "60-180s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape8a_002013",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape8a_002013:page_595485",
+      "proxy_bucket=tape8a_002013:music_or_bgm_candidate:60-180s"
+    ],
+    "duration_seconds": 94.799433
+  },
+  {
+    "sample_id": "round2_tape2b_002015_page_343805_dd631d00beab11efa52cbd7e1249b5c0",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2b_002015/mixed_multi_speaker_other_bgm/page_343805_dd631d00beab11efa52cbd7e1249b5c0.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "8-25s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape2b_002015",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape2b_002015:page_343805",
+      "proxy_bucket=tape2b_002015:music_or_bgm_candidate:8-25s"
+    ],
+    "duration_seconds": 8.569229
+  },
+  {
+    "sample_id": "round2_tape3b_002013_page_338621_ae47efb0a25311ef94ddbd7e1249b5c0",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape3b_002013/en_male_female_mixed_no_music/page_338621_ae47efb0a25311ef94ddbd7e1249b5c0.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "en",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "no_music",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape3b_002013",
+    "notes": [
+      "clean_or_mixed_speech_candidate",
+      "family=tape3b_002013:page_338621",
+      "target_bucket=tape3b_002013:clean_or_mixed_speech_candidate:1-3s"
+    ],
+    "duration_seconds": 2.378209
+  },
+  {
+    "sample_id": "round2_tape3a_002002_page_081_9d3b08cfaa6611ebae6fb89a2af90636",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape3a_002002/mixed_male_female_mixed_transient_sfx/page_081_9d3b08cfaa6611ebae6fb89a2af90636.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "<1s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "transient_sfx",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape3a_002002",
+    "notes": [
+      "clean_or_mixed_speech_candidate",
+      "family=tape3a_002002:page_081",
+      "proxy_bucket=tape3a_002002:clean_or_mixed_speech_candidate:<1s"
+    ],
+    "duration_seconds": 0.890295
+  },
+  {
+    "sample_id": "round2_tape3a_002002_000014_Unit 2_Lesson 1",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape3a_002002/mixed_multi_speaker_other_bgm/000014_Unit 2_Lesson 1.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": ">180s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape3a_002002",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape3a_002002:000014_Unit 2",
+      "proxy_bucket=tape3a_002002:music_or_bgm_candidate:>180s"
+    ],
+    "duration_seconds": 200.462902
+  },
+  {
+    "sample_id": "round2_tape6b_002013_page_348405_b82e94c0d49911efb084bd7e1249b5c0",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape6b_002013/en_multi_speaker_other_bgm/page_348405_b82e94c0d49911efb084bd7e1249b5c0.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "en",
+    "duration_bucket": "25-60s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape6b_002013",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape6b_002013:page_348405",
+      "proxy_bucket=tape6b_002013:music_or_bgm_candidate:25-60s"
+    ],
+    "duration_seconds": 53.891678
+  },
+  {
+    "sample_id": "round2_tape2a_002014_page_313744_1438814",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2a_002014/mixed_multi_speaker_other_bgm/page_313744_1438814.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape2a_002014",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape2a_002014:page_313744",
+      "proxy_bucket=tape2a_002014:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 4.546372
+  },
+  {
+    "sample_id": "round2_tape3a_002023_unit_114845",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape3a_002023/mixed_multi_speaker_other_bgm/unit_114845.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "60-180s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape3a_002023",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape3a_002023:unit_114845",
+      "proxy_bucket=tape3a_002023:music_or_bgm_candidate:60-180s"
+    ],
+    "duration_seconds": 146.482698
+  },
+  {
+    "sample_id": "round2_tape1b_002011_page_348088_861381e1d24011efbb51bd7e1249b5c0",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape1b_002011/zh_multi_speaker_other_bgm/page_348088_861381e1d24011efbb51bd7e1249b5c0.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "zh",
+    "duration_bucket": "8-25s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape1b_002011",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape1b_002011:page_348088",
+      "proxy_bucket=tape1b_002011:music_or_bgm_candidate:8-25s"
+    ],
+    "duration_seconds": 13.010045
+  },
+  {
+    "sample_id": "round2_tape6a_002013_page_306956_5d7f55c065ca11ef9a3518c04d251e75",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape6a_002013/en_male_female_mixed_no_music/page_306956_5d7f55c065ca11ef9a3518c04d251e75.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "en",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "no_music",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape6a_002013",
+    "notes": [
+      "clean_or_mixed_speech_candidate",
+      "family=tape6a_002013:page_306956",
+      "target_bucket=tape6a_002013:clean_or_mixed_speech_candidate:1-3s"
+    ],
+    "duration_seconds": 1.124331
+  },
+  {
+    "sample_id": "round2_tape2a_002011_page_357153_01640186",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2a_002011/zh_male_female_mixed_transient_sfx/page_357153_01640186.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "zh",
+    "duration_bucket": "<1s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "transient_sfx",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape2a_002011",
+    "notes": [
+      "clean_or_mixed_speech_candidate",
+      "family=tape2a_002011:page_357153",
+      "proxy_bucket=tape2a_002011:clean_or_mixed_speech_candidate:<1s"
+    ],
+    "duration_seconds": 0.757469
+  },
+  {
+    "sample_id": "round2_tape6a_002002_000024_Unit 2_Story Time",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape6a_002002/mixed_single_male_bgm/000024_Unit 2_Story Time.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": ">180s",
+    "speaker_pattern": "single_male",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate_round2",
+    "book_id": "tape6a_002002",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape6a_002002:000024_Unit 2",
+      "proxy_bucket=tape6a_002002:music_or_bgm_candidate:>180s"
+    ],
+    "duration_seconds": 180.043946
+  },
+  {
+    "sample_id": "round2_tape6b_002007_page_053_d54ccd40f74011ebbbafb89a2af90636",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape6b_002007/mixed_multi_speaker_other_bgm/page_053_d54ccd40f74011ebbbafb89a2af90636.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "25-60s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape6b_002007",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape6b_002007:page_053",
+      "proxy_bucket=tape6b_002007:music_or_bgm_candidate:25-60s"
+    ],
+    "duration_seconds": 32.706372
+  },
+  {
+    "sample_id": "round2_tape2a_002015_page_313803_1439197",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2a_002015/mixed_multi_speaker_other_bgm/page_313803_1439197.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape2a_002015",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape2a_002015:page_313803",
+      "proxy_bucket=tape2a_002015:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 4.076168
+  },
+  {
+    "sample_id": "round2_tape4b_002010_page_347389_659967e1bc5111efaf60bd7e1249b5c0",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape4b_002010/mixed_multi_speaker_other_bgm/page_347389_659967e1bc5111efaf60bd7e1249b5c0.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "60-180s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape4b_002010",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape4b_002010:page_347389",
+      "proxy_bucket=tape4b_002010:music_or_bgm_candidate:60-180s"
+    ],
+    "duration_seconds": 68.507188
+  },
+  {
+    "sample_id": "round2_tape3a_002014_page_305387_322f45b0677811ef888f18c04d251e75",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape3a_002014/mixed_multi_speaker_other_bgm/page_305387_322f45b0677811ef888f18c04d251e75.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "8-25s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape3a_002014",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape3a_002014:page_305387",
+      "proxy_bucket=tape3a_002014:music_or_bgm_candidate:8-25s"
+    ],
+    "duration_seconds": 8.360249
+  },
+  {
+    "sample_id": "round2_tape1a_002014_page_313652_1438105",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape1a_002014/mixed_male_female_mixed_no_music/page_313652_1438105.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "no_music",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape1a_002014",
+    "notes": [
+      "clean_or_mixed_speech_candidate",
+      "family=tape1a_002014:page_313652",
+      "proxy_bucket=tape1a_002014:clean_or_mixed_speech_candidate:1-3s"
+    ],
+    "duration_seconds": 1.699025
+  },
+  {
+    "sample_id": "round2_tape7a_002021_page_302085_baa78c2164dc11ef9fbf18c04d251e75",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape7a_002021/mixed_multi_speaker_other_bgm/page_302085_baa78c2164dc11ef9fbf18c04d251e75.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "25-60s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape7a_002021",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape7a_002021:page_302085",
+      "proxy_bucket=tape7a_002021:music_or_bgm_candidate:25-60s"
+    ],
+    "duration_seconds": 40.229637
+  },
+  {
+    "sample_id": "round2_tape2b_002020_page_362346_a6bb8791fdae11f0af18b32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2b_002020/mixed_multi_speaker_other_bgm/page_362346_a6bb8791fdae11f0af18b32a8ac171c2.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape2b_002020",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape2b_002020:page_362346",
+      "proxy_bucket=tape2b_002020:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 3.985958
+  },
+  {
+    "sample_id": "round2_tape7b_002021_page_343122_c49ef99ebc3b11efb099bd7e1249b5c0",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape7b_002021/mixed_multi_speaker_other_bgm/page_343122_c49ef99ebc3b11efb099bd7e1249b5c0.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "60-180s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape7b_002021",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape7b_002021:page_343122",
+      "proxy_bucket=tape7b_002021:music_or_bgm_candidate:60-180s"
+    ],
+    "duration_seconds": 97.124331
+  },
+  {
+    "sample_id": "round2_tape3b_002021_page_360020_01654796",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape3b_002021/mixed_multi_speaker_other_bgm/page_360020_01654796.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "8-25s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape3b_002021",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape3b_002021:page_360020",
+      "proxy_bucket=tape3b_002021:music_or_bgm_candidate:8-25s"
+    ],
+    "duration_seconds": 16.823923
+  },
+  {
+    "sample_id": "round2_tape6b_002007_page_062_f3d9ffcff74011eb8ca8b89a2af90636",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape6b_002007/mixed_multi_speaker_other_transient_sfx/page_062_f3d9ffcff74011eb8ca8b89a2af90636.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "transient_sfx",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape6b_002007",
+    "notes": [
+      "fragmented_or_sfx_candidate",
+      "family=tape6b_002007:page_062",
+      "proxy_bucket=tape6b_002007:fragmented_or_sfx_candidate:1-3s"
+    ],
+    "duration_seconds": 2.405397
+  },
+  {
+    "sample_id": "round2_tape4b_002007_000058_Unit 6_Countries",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape4b_002007/mixed_single_female_bgm/000058_Unit 6_Countries.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "25-60s",
+    "speaker_pattern": "single_female",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "separate_bgm_voice",
+    "quality_label": "candidate_round2",
+    "book_id": "tape4b_002007",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape4b_002007:000058_Unit 6",
+      "proxy_bucket=tape4b_002007:music_or_bgm_candidate:25-60s"
+    ],
+    "duration_seconds": 27.190204
+  },
+  {
+    "sample_id": "round2_tape4a_002014_page_356338_dd40d81e6de811f0afd3b32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape4a_002014/mixed_multi_speaker_other_bgm/page_356338_dd40d81e6de811f0afd3b32a8ac171c2.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape4a_002014",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape4a_002014:page_356338",
+      "proxy_bucket=tape4a_002014:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 5.38229
+  },
+  {
+    "sample_id": "round2_tape5a_002003_page_014_4eb5e3309dd511eb913cb89a2af90636",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape5a_002003/mixed_multi_speaker_other_bgm/page_014_4eb5e3309dd511eb913cb89a2af90636.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "8-25s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape5a_002003",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape5a_002003:page_014",
+      "proxy_bucket=tape5a_002003:music_or_bgm_candidate:8-25s"
+    ],
+    "duration_seconds": 16.067438
+  },
+  {
+    "sample_id": "round2_tape1a_002011_page_307436_55537ff065e011ef845018c04d251e75",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape1a_002011/zh_male_female_mixed_no_music/page_307436_55537ff065e011ef845018c04d251e75.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "zh",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "no_music",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape1a_002011",
+    "notes": [
+      "clean_or_mixed_speech_candidate",
+      "family=tape1a_002011:page_307436",
+      "target_bucket=tape1a_002011:clean_or_mixed_speech_candidate:1-3s"
+    ],
+    "duration_seconds": 2.365147
+  },
+  {
+    "sample_id": "round2_tape4b_002010_page_347465_73b76100d7cd11efb1e0bd7e1249b5c0",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape4b_002010/mixed_multi_speaker_other_bgm/page_347465_73b76100d7cd11efb1e0bd7e1249b5c0.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape4b_002010",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape4b_002010:page_347465",
+      "proxy_bucket=tape4b_002010:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 3.475351
+  },
+  {
+    "sample_id": "round2_tape5b_002001_page_22248_3e3fcecfd6f711efb8c2bd7e1249b5c0",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape5b_002001/mixed_multi_speaker_other_bgm/page_22248_3e3fcecfd6f711efb8c2bd7e1249b5c0.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "8-25s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape5b_002001",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape5b_002001:page_22248",
+      "proxy_bucket=tape5b_002001:music_or_bgm_candidate:8-25s"
+    ],
+    "duration_seconds": 16.823923
+  },
+  {
+    "sample_id": "round2_tape2a_002011_page_357114_01636172",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2a_002011/zh_male_female_mixed_no_music/page_357114_01636172.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "zh",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "no_music",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape2a_002011",
+    "notes": [
+      "clean_or_mixed_speech_candidate",
+      "family=tape2a_002011:page_357114",
+      "target_bucket=tape2a_002011:clean_or_mixed_speech_candidate:1-3s"
+    ],
+    "duration_seconds": 1.056508
+  },
+  {
+    "sample_id": "round2_tape4b_002014_page_360864_38cbc1a100c911f1973db32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape4b_002014/mixed_multi_speaker_other_bgm/page_360864_38cbc1a100c911f1973db32a8ac171c2.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape4b_002014",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape4b_002014:page_360864",
+      "proxy_bucket=tape4b_002014:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 3.553719
+  },
+  {
+    "sample_id": "round2_tape5b_002004_page_047_9f7967c0f72011eb9c2bb89a2af90636",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape5b_002004/mixed_multi_speaker_other_bgm/page_047_9f7967c0f72011eb9c2bb89a2af90636.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "8-25s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape5b_002004",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape5b_002004:page_047",
+      "proxy_bucket=tape5b_002004:music_or_bgm_candidate:8-25s"
+    ],
+    "duration_seconds": 8.936009
+  },
+  {
+    "sample_id": "round2_tape2a_002011_page_357159_01633628",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2a_002011/zh_male_female_mixed_no_music/page_357159_01633628.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "zh",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "no_music",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape2a_002011",
+    "notes": [
+      "clean_or_mixed_speech_candidate",
+      "family=tape2a_002011:page_357159",
+      "proxy_bucket=tape2a_002011:clean_or_mixed_speech_candidate:1-3s"
+    ],
+    "duration_seconds": 2.856054
+  },
+  {
+    "sample_id": "round2_tape5a_002003_page_027_6a063a409dd511eb9549b89a2af90636",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape5a_002003/mixed_multi_speaker_other_bgm/page_027_6a063a409dd511eb9549b89a2af90636.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape5a_002003",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape5a_002003:page_027",
+      "proxy_bucket=tape5a_002003:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 4.860907
+  },
+  {
+    "sample_id": "round2_tape2b_002011_page_359942_01654574",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2b_002011/zh_male_female_mixed_no_music/page_359942_01654574.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "zh",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "no_music",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape2b_002011",
+    "notes": [
+      "clean_or_mixed_speech_candidate",
+      "family=tape2b_002011:page_359942",
+      "target_bucket=tape2b_002011:clean_or_mixed_speech_candidate:1-3s"
+    ],
+    "duration_seconds": 2.143107
+  },
+  {
+    "sample_id": "round2_tape5b_002006_page_029_0403f770dc0811ebb046a4bb6d450ec3",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape5b_002006/mixed_multi_speaker_other_bgm/page_029_0403f770dc0811ebb046a4bb6d450ec3.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape5b_002006",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape5b_002006:page_029",
+      "proxy_bucket=tape5b_002006:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 5.043764
+  },
+  {
+    "sample_id": "round2_tape2b_002011_page_359959_4f3209b0ee0211f08bfcb32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2b_002011/zh_male_female_mixed_no_music/page_359959_4f3209b0ee0211f08bfcb32a8ac171c2.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "zh",
+    "duration_bucket": "1-3s",
+    "speaker_pattern": "male_female_mixed",
+    "music_pattern": "no_music",
+    "voice_age": "adult",
+    "content_type": "clean_reading",
+    "expected_processing_mode": "clean_voice_segments",
+    "quality_label": "candidate_round2",
+    "book_id": "tape2b_002011",
+    "notes": [
+      "clean_or_mixed_speech_candidate",
+      "family=tape2b_002011:page_359959",
+      "target_bucket=tape2b_002011:clean_or_mixed_speech_candidate:1-3s"
+    ],
+    "duration_seconds": 2.874535
+  },
+  {
+    "sample_id": "round2_tape5b_002113_page_360757_2ff61211036211f1bc0ab32a8ac171c2",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape5b_002113/mixed_multi_speaker_other_bgm/page_360757_2ff61211036211f1bc0ab32a8ac171c2.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape5b_002113",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape5b_002113:page_360757",
+      "proxy_bucket=tape5b_002113:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 5.356168
+  },
+  {
+    "sample_id": "round2_tape6b_002007_page_008_51a41ecff74011ebb3e3b89a2af90636",
+    "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape6b_002007/mixed_multi_speaker_other_bgm/page_008_51a41ecff74011ebb3e3b89a2af90636.mp3",
+    "source": "book_res_candidate_round2",
+    "language": "mixed",
+    "duration_bucket": "3-8s",
+    "speaker_pattern": "multi_speaker_other",
+    "music_pattern": "bgm",
+    "voice_age": "adult",
+    "content_type": "mixed_lesson",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "quality_label": "candidate_round2",
+    "book_id": "tape6b_002007",
+    "notes": [
+      "music_or_bgm_candidate",
+      "family=tape6b_002007:page_008",
+      "proxy_bucket=tape6b_002007:music_or_bgm_candidate:3-8s"
+    ],
+    "duration_seconds": 4.207846
+  }
+]

@@ -1,4 +1,5 @@
 import os
+import json
 import sys
 import threading
 import time
@@ -19,6 +20,9 @@ from configs.config import Config
 from infer.modules.vc.modules import VC
 from infer.modules.vc.utils import get_index_path_from_model
 from tools import process_mixed_long_audio as mixed_audio
+from tools.rvc_auto_convert import auto_convert_mp3
+from tools.rvc_pipeline.executor import execute_long_mixed_pipeline
+from tools.rvc_pipeline.thresholds import ACTIVE_THRESHOLDS
 
 
 APP_ROOT = REPO_ROOT / "outputs" / "simple_rvc_flask"
@@ -48,13 +52,13 @@ MODEL_PRESETS = {
         "f0_up_key": 0,
         "index_rate": 0.75,
         "protect": 0.25,
-        "rms_mix_rate": 1.25,
+        "rms_mix_rate": 0.18,
     },
     "Myaz.pth": {
         "f0_up_key": 0,
-        "index_rate": 0.75,
-        "protect": 0.25,
-        "rms_mix_rate": 1.25,
+        "index_rate": 0.0,
+        "protect": 0.30,
+        "rms_mix_rate": 0.20,
     },
 }
 
@@ -157,6 +161,7 @@ def create_job(kind: str, input_name: str) -> tuple[str, Path]:
         "converted_vocals": "",
         "downloads": [],
         "error": "",
+        "metadata": {},
         "started_at": datetime.now().timestamp(),
     }
     with JOBS_LOCK:
@@ -172,6 +177,30 @@ def update_job(job_id: str, **fields) -> None:
                 job["log"].append(value)
             else:
                 job[key] = value
+
+
+def load_job_artifacts(job_dir: Path) -> dict:
+    artifacts = {"stage_summaries": {}, "result_metadata": {}}
+    if not job_dir.exists():
+        return artifacts
+    for path in sorted(job_dir.glob("*_summary.json")):
+        try:
+            artifacts["stage_summaries"][path.stem] = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+    stages_path = job_dir / "long_mixed_pipeline_stages.json"
+    if stages_path.exists():
+        try:
+            artifacts["stage_summaries"][stages_path.stem] = json.loads(stages_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    auto_result = job_dir / "auto_result.json"
+    if auto_result.exists():
+        try:
+            artifacts["result_metadata"] = json.loads(auto_result.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return artifacts
 
 
 def export_mp3(input_wav: Path, output_mp3: Path) -> None:
@@ -308,49 +337,67 @@ def run_long_job(job_id: str, payload: dict) -> None:
             input_path=input_path,
             original_audio=input_path,
         )
-        mixed_audio.ensure_environment()
-        mixed_audio.MALE_MODEL = male_model
-        mixed_audio.MALE_INDEX = male_index
-        mixed_audio.FEMALE_MODEL = female_model
-        mixed_audio.FEMALE_INDEX = female_index
-        mixed_audio.UVR_MODEL = payload["uvr_model"]
-        mixed_audio.READING_MODE = bool(payload["reading_mode"])
-        if not payload["speaker_embedding"]:
-            mixed_audio.SPEAKER_ENCODER_FAILED = True
-            mixed_audio.SPEAKER_ENCODER = None
-        mixed_audio.MALE_PARAMS = {
-            "f0_up_key": int(payload["male_f0_up_key"]),
-            "f0_method": payload["f0_method"],
-            "index_rate": float(payload["male_index_rate"]),
-            "protect": float(payload["male_protect"]),
-            "rms_mix_rate": float(payload["male_rms_mix_rate"]),
-            "filter_radius": int(payload["filter_radius"]),
-            "resample_sr": int(payload["resample_sr"]),
-        }
-        mixed_audio.FEMALE_PARAMS = {
-            "f0_up_key": int(payload["female_f0_up_key"]),
-            "f0_method": payload["f0_method"],
-            "index_rate": float(payload["female_index_rate"]),
-            "protect": float(payload["female_protect"]),
-            "rms_mix_rate": float(payload["female_rms_mix_rate"]),
-            "filter_radius": int(payload["filter_radius"]),
-            "resample_sr": int(payload["resample_sr"]),
+        plan = {
+            "processing_mode": "long_mixed_pipeline",
+            "target_route": "mixed",
+            "models": [
+                {"role": "male", "model": male_model, "index": male_index},
+                {"role": "female", "model": female_model, "index": female_index},
+            ],
+            "parameters": {
+                "uvr_model": payload["uvr_model"],
+                "reading_mode": bool(payload["reading_mode"]),
+                "speaker_embedding": bool(payload["speaker_embedding"]),
+                "male_params": {
+                    "f0_up_key": int(payload["male_f0_up_key"]),
+                    "f0_method": payload["f0_method"],
+                    "index_rate": float(payload["male_index_rate"]),
+                    "protect": float(payload["male_protect"]),
+                    "rms_mix_rate": float(payload["male_rms_mix_rate"]),
+                    "filter_radius": int(payload["filter_radius"]),
+                    "resample_sr": int(payload["resample_sr"]),
+                },
+                "female_params": {
+                    "f0_up_key": int(payload["female_f0_up_key"]),
+                    "f0_method": payload["f0_method"],
+                    "index_rate": float(payload["female_index_rate"]),
+                    "protect": float(payload["female_protect"]),
+                    "rms_mix_rate": float(payload["female_rms_mix_rate"]),
+                    "filter_radius": int(payload["filter_radius"]),
+                    "resample_sr": int(payload["resample_sr"]),
+                },
+            },
         }
 
         def on_progress(value: float, message: str) -> None:
             update_job(job_id, progress=value, message=message, log_append=message)
 
-        mixed_audio.process_audio(
+        output_path = job_dir / ("final_mix.mp3" if payload["remix"] else "converted_vocals.mp3")
+        _segments, _logs = execute_long_mixed_pipeline(
             Path(input_path),
+            output_path,
             job_dir,
-            remix=bool(payload["remix"]),
-            progress_callback=on_progress,
+            plan,
+            lambda event: on_progress(float(event.get("progress", 0.0)), str(event.get("message", ""))),
         )
         converted_vocals = job_dir / "converted_vocals.mp3"
         final_mix = job_dir / "final_mix.mp3"
         segments_json = job_dir / "segments.json"
         segments_csv = job_dir / "segments.csv"
-        downloads = [str(path) for path in [converted_vocals, final_mix, segments_json, segments_csv] if path.exists()]
+        downloads = [
+            str(path)
+            for path in [
+                converted_vocals,
+                final_mix,
+                segments_json,
+                segments_csv,
+                job_dir / "uvr_split_summary.json",
+                job_dir / "segment_merge_summary.json",
+                job_dir / "convert_remix_summary.json",
+                job_dir / "long_mixed_pipeline_stages.json",
+            ]
+            if path.exists()
+        ]
         result_audio = str(final_mix if payload["remix"] and final_mix.exists() else converted_vocals)
         update_job(
             job_id,
@@ -360,12 +407,79 @@ def run_long_job(job_id: str, payload: dict) -> None:
             converted_vocals=str(converted_vocals) if converted_vocals.exists() else "",
             result_audio=result_audio,
             downloads=downloads,
+            metadata=load_job_artifacts(job_dir),
         )
     except Exception as exc:
         update_job(
             job_id,
             status="error",
             message="处理失败",
+            error=f"{exc}\n{traceback.format_exc()}",
+            log_append=f"ERROR: {exc}",
+        )
+
+
+def run_auto_job(job_id: str, payload: dict) -> None:
+    try:
+        input_path = Path(payload["input_path"])
+        output_path = Path(payload["output_path"])
+        update_job(
+            job_id,
+            status="running",
+            progress=0.02,
+            message="准备自动分析",
+            input_path=str(input_path),
+            original_audio=str(input_path),
+        )
+
+        def on_progress(event: dict) -> None:
+            update_job(
+                job_id,
+                progress=float(event.get("progress", 0.0)),
+                message=str(event.get("message", "")),
+                log_append=f"{event.get('stage', 'auto')}: {event.get('message', '')}",
+            )
+
+        result = auto_convert_mp3(
+            input_path,
+            output_path,
+            profile=payload.get("profile", "default"),
+            progress_callback=on_progress,
+        )
+        if result["status"] not in {"succeeded", "fallback"}:
+            raise RuntimeError(result.get("error", "auto convert failed"))
+
+        metadata_path = output_path.with_suffix(".auto.json")
+        import json
+
+        with open(metadata_path, "w", encoding="utf-8") as handle:
+            json.dump(result, handle, ensure_ascii=False, indent=2)
+
+        downloads = [str(output_path), str(metadata_path)]
+        for extra in Path(result.get("job_dir", "")).glob("*_summary.json") if result.get("job_dir") else []:
+            downloads.append(str(extra))
+        stages_path = Path(result.get("job_dir", "")) / "long_mixed_pipeline_stages.json" if result.get("job_dir") else None
+        if stages_path and stages_path.exists():
+            downloads.append(str(stages_path))
+        update_job(
+            job_id,
+            status="done",
+            progress=1.0,
+            message="自动处理完成" if result["status"] == "succeeded" else "自动处理完成（已回退原音）",
+            result_audio=str(output_path),
+            downloads=downloads,
+            metadata=result,
+            log_append=(
+                f"自动模式: {result['selected_plan']['processing_mode']} | "
+                f"分类: {result['analysis']['classification']} | "
+                f"music_risk: {result['analysis']['music_risk']}"
+            ),
+        )
+    except Exception as exc:
+        update_job(
+            job_id,
+            status="error",
+            message="自动处理失败",
             error=f"{exc}\n{traceback.format_exc()}",
             log_append=f"ERROR: {exc}",
         )
@@ -404,6 +518,7 @@ def api_options():
             "default_uvr_model": UVR_MODELS[0],
             "default_male": default_model_choice(models, DEFAULT_MALE_MODEL),
             "default_female": default_model_choice(models, DEFAULT_FEMALE_MODEL),
+            "active_thresholds": ACTIVE_THRESHOLDS.to_dict(),
         }
     )
 
@@ -487,12 +602,57 @@ def api_jobs_long():
     return jsonify({"job_id": job_id})
 
 
+@app.post("/api/jobs/auto")
+def api_jobs_auto():
+    file_storage = request.files.get("audio")
+    if not file_storage:
+        return jsonify({"error": "缺少音频文件"}), 400
+    job_id, job_dir = create_job("auto", file_storage.filename or "audio")
+    input_path = save_uploaded_file(file_storage, job_dir)
+    output_path = job_dir / "auto_converted.mp3"
+    payload = {
+        "input_path": input_path,
+        "output_path": str(output_path.resolve()),
+        "profile": request.form.get("profile", "default"),
+    }
+    thread = threading.Thread(target=run_auto_job, args=(job_id, payload), daemon=True)
+    thread.start()
+    return jsonify({"job_id": job_id})
+
+
+@app.post("/api/rvc/auto-convert")
+def api_rvc_auto_convert():
+    payload = request.get_json(silent=True) or {}
+    input_path = payload.get("input_path", "")
+    output_path = payload.get("output_path", "")
+    profile = payload.get("profile", "default")
+    if not input_path or not output_path:
+        return jsonify(
+            {
+                "status": "failed",
+                "input_path": input_path,
+                "output_path": output_path,
+                "analysis": {},
+                "selected_plan": {},
+                "segments": [],
+                "log": [],
+                "error": "input_path and output_path are required",
+            }
+        ), 400
+    result = auto_convert_mp3(Path(input_path), Path(output_path), profile=profile)
+    status_code = 200 if result["status"] in {"succeeded", "fallback"} else 500
+    return jsonify(result), status_code
+
+
 @app.get("/api/jobs/<job_id>")
 def api_job_status(job_id: str):
     with JOBS_LOCK:
         job = JOBS.get(job_id)
         if not job:
             return jsonify({"error": "job not found"}), 404
+        job_dir = Path(job.get("job_dir") or "")
+        if job_dir:
+            job = {**job, "metadata": job.get("metadata") or load_job_artifacts(job_dir)}
         return jsonify(job)
 
 

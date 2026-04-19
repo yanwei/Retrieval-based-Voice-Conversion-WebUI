@@ -1,0 +1,86 @@
+[
+  {
+    "sample_id": "tape3a_002013_track_1370472",
+    "book_id": "tape3a_002013",
+    "resource_id": "1370472",
+    "path": "assets/sample_library/regression_set/tape3a_002013/known_good/page_301961_6705fff0645c11ef97e118c04d251e75.mp3",
+    "source": "book_res_user_feedback",
+    "quality_label": "known_good",
+    "language": "en",
+    "music_pattern": "bgm",
+    "speaker_pattern": "male_female_mixed",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "expected_quality": "keep",
+    "notes": [
+      "User confirmed current conversion result is good; guard against over-conservative fallback."
+    ]
+  },
+  {
+    "sample_id": "tape3a_002013_track_1370477",
+    "book_id": "tape3a_002013",
+    "resource_id": "1370477",
+    "path": "assets/sample_library/regression_set/tape3a_002013/known_failure/page_301961_676c89f0645c11efb7a418c04d251e75.mp3",
+    "source": "book_res_user_feedback",
+    "quality_label": "known_failure",
+    "language": "en",
+    "music_pattern": "bgm",
+    "speaker_pattern": "male_female_mixed",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "expected_quality": "fallback_or_review",
+    "expected_warning": "low_voiced_long_speech_segments",
+    "notes": [
+      "User marked result wrong; previous segments were all long low-voiced male segments."
+    ]
+  },
+  {
+    "sample_id": "tape3a_002013_track_1369541",
+    "book_id": "tape3a_002013",
+    "resource_id": "1369541",
+    "path": "assets/sample_library/regression_set/tape3a_002013/known_failure/page_301964_d6220880614f11efa2ef18c04d251e75.mp3",
+    "source": "book_res_user_feedback",
+    "quality_label": "known_failure",
+    "language": "en",
+    "music_pattern": "bgm",
+    "speaker_pattern": "male_female_mixed",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "expected_quality": "fallback_or_review",
+    "expected_warning": "unstable_long_mixed_segments",
+    "notes": [
+      "User marked result wrong; previous output had multiple borderline/low-voiced long segments."
+    ]
+  },
+  {
+    "sample_id": "tape3a_002013_track_1370345",
+    "book_id": "tape3a_002013",
+    "resource_id": "1370345",
+    "path": "assets/sample_library/regression_set/tape3a_002013/known_failure/page_301997_84590800646011ef931118c04d251e75.mp3",
+    "source": "book_res_user_feedback",
+    "quality_label": "known_failure",
+    "language": "en",
+    "music_pattern": "bgm",
+    "speaker_pattern": "single_female",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "expected_quality": "fallback_or_review",
+    "expected_warning": "clean_voice_segments_on_strong_music",
+    "notes": [
+      "User marked result wrong; old conversion used clean voice segments despite strong music risk."
+    ]
+  },
+  {
+    "sample_id": "tape3a_002013_track_1370347",
+    "book_id": "tape3a_002013",
+    "resource_id": "1370347",
+    "path": "assets/sample_library/regression_set/tape3a_002013/known_failure/page_301997_84c44cf0646011efb95918c04d251e75.mp3",
+    "source": "book_res_user_feedback",
+    "quality_label": "known_failure",
+    "language": "en",
+    "music_pattern": "bgm",
+    "speaker_pattern": "male_female_mixed",
+    "expected_processing_mode": "long_mixed_pipeline",
+    "expected_quality": "fallback_or_review",
+    "expected_warning": "dominant_passthrough_segments",
+    "notes": [
+      "User marked result wrong; previous conversion had dominant passthrough/low_voice segments."
+    ]
+  }
+]

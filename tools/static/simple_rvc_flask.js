@@ -1,6 +1,5 @@
 const state = {
-  singleJobId: null,
-  longJobId: null,
+  autoJobId: null,
   options: null,
   jobTimers: {},
 };
@@ -9,42 +8,10 @@ function $(id) {
   return document.getElementById(id);
 }
 
-function setRangePair(rangeId, valueId) {
-  const range = $(rangeId);
-  const value = $(valueId);
-  const sync = (from, to) => {
-    to.value = from.value;
-  };
-  range.addEventListener("input", () => sync(range, value));
-  value.addEventListener("input", () => sync(value, range));
-}
-
-function setRangeValue(rangeId, valueId, value) {
-  const normalized = String(value);
-  $(rangeId).value = normalized;
-  $(valueId).value = normalized;
-}
-
-function setAudioPreview(fileInputId, audioId) {
-  $(fileInputId).addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    $(audioId).src = file ? URL.createObjectURL(file) : "";
-  });
-}
-
-function fillSelect(select, values, picked) {
-  select.innerHTML = "";
-  const empty = document.createElement("option");
-  empty.value = "";
-  empty.textContent = "留空 / 自动匹配";
-  select.appendChild(empty);
-  values.forEach((value) => {
-    const option = document.createElement("option");
-    option.value = value;
-    option.textContent = value;
-    if (value === picked) option.selected = true;
-    select.appendChild(option);
-  });
+function prettyJson(value) {
+  if (!value) return "暂无";
+  if (typeof value === "object" && Object.keys(value).length === 0) return "暂无";
+  return JSON.stringify(value, null, 2);
 }
 
 function formatEta(seconds) {
@@ -65,85 +32,89 @@ async function fetchJson(url, options) {
   return data;
 }
 
+function setAudioPreview(fileInputId, audioId) {
+  $(fileInputId).addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    $(audioId).src = file ? URL.createObjectURL(file) : "";
+  });
+}
+
 async function loadOptions() {
   const data = await fetchJson("/api/options");
   state.options = data;
-  fillSelect($("single-model"), data.models, data.models[0] || "");
-  fillSelect($("male-model"), data.models, data.default_male || data.models[0] || "");
-  fillSelect($("female-model"), data.models, data.default_female || data.models[0] || "");
-  fillSelect($("single-index"), data.indices, "");
-  fillSelect($("male-index"), data.indices, "");
-  fillSelect($("female-index"), data.indices, "");
-  fillSelect($("long-uvr-model"), data.uvr_models || [], data.default_uvr_model || "");
-  await handleModelChange("single-model", "single-index", "single");
-  await handleModelChange("male-model", "male-index", "male");
-  await handleModelChange("female-model", "female-index", "female");
+  $("auto-thresholds").textContent = prettyJson({
+    active_thresholds: data.active_thresholds || {},
+    note: "这些阈值来自全量音频分析结果，用于黑盒自动决策。",
+  });
+  $("auto-metadata").textContent = prettyJson({
+    note: "这里会显示 analysis / selected_plan / quality_gate / review / stage_summaries。",
+  });
 }
 
-async function refreshIndexForModel(modelSelectId, indexSelectId) {
-  const model = $(modelSelectId).value;
-  const result = await fetchJson(`/api/default-index?model=${encodeURIComponent(model)}`);
-  const select = $(indexSelectId);
-  fillSelect(select, state.options.indices, result.index || "");
+function renderWarning(metadata) {
+  const node = $("auto-warning");
+  const result = metadata && metadata.result_metadata ? metadata.result_metadata : metadata;
+  if (!result) {
+    node.hidden = true;
+    node.textContent = "";
+    return;
+  }
+
+  const qualityGate = result.quality_gate || {};
+  const review = result.review || {};
+  const pieces = [];
+  if (result.status === "fallback") {
+    pieces.push("本次任务触发了回退，输出可能是原音或保守结果。");
+  }
+  if (qualityGate.fallback_used) {
+    pieces.push(`quality_gate: ${qualityGate.fallback_reason || "fallback_used"}`);
+  }
+  if (Array.isArray(qualityGate.warnings) && qualityGate.warnings.length) {
+    pieces.push(`warnings: ${qualityGate.warnings.join(", ")}`);
+  }
+  if (review.needs_review) {
+    pieces.push(`review: ${(review.reasons || []).join(", ") || "needs_review"}`);
+  }
+
+  if (pieces.length === 0) {
+    node.hidden = true;
+    node.textContent = "";
+    return;
+  }
+  node.hidden = false;
+  node.textContent = pieces.join(" ");
 }
 
-function applyModelPreset(modelSelectId, prefix) {
-  const model = $(modelSelectId).value;
-  const preset = (state.options.model_presets || {})[model];
-  if (!preset) return;
-  if (preset.f0_up_key !== undefined) {
-    setRangeValue(`${prefix}-f0-up-key`, `${prefix}-f0-up-key-value`, preset.f0_up_key);
-  }
-  if (preset.index_rate !== undefined) {
-    setRangeValue(`${prefix}-index-rate`, `${prefix}-index-rate-value`, preset.index_rate);
-  }
-  if (preset.protect !== undefined) {
-    setRangeValue(`${prefix}-protect`, `${prefix}-protect-value`, preset.protect);
-  }
-  if (preset.rms_mix_rate !== undefined) {
-    setRangeValue(`${prefix}-rms`, `${prefix}-rms-value`, preset.rms_mix_rate);
-  }
-}
-
-async function handleModelChange(modelSelectId, indexSelectId, prefix) {
-  await refreshIndexForModel(modelSelectId, indexSelectId);
-  applyModelPreset(modelSelectId, prefix);
-}
-
-function setProgress(prefix, progress, message, log, resultAudio, downloads, extraAudio, etaText) {
-  $(`${prefix}-progress-bar`).style.width = `${Math.round((progress || 0) * 100)}%`;
+function setProgress(progress, message, log, resultAudio, downloads, etaText, metadata) {
+  $("auto-progress-bar").style.width = `${Math.round((progress || 0) * 100)}%`;
   const parts = [`${Math.round((progress || 0) * 100)}%`, message || ""];
   if (etaText) parts.push(etaText);
-  $(`${prefix}-status`).textContent = parts.filter(Boolean).join(" | ");
-  if (log) {
-    $(`${prefix}-log`).textContent = log.join("\n");
+  $("auto-status").textContent = parts.filter(Boolean).join(" | ");
+  $("auto-log").textContent = (log || []).join("\n");
+
+  if (resultAudio) {
+    $("auto-result").src = `/download?path=${encodeURIComponent(resultAudio)}`;
   }
-  if (resultAudio && $(`${prefix}-result`)) {
-    $(`${prefix}-result`).src = `/download?path=${encodeURIComponent(resultAudio)}`;
-  }
-  if (extraAudio && $(`${prefix}-vocals`)) {
-    $(`${prefix}-vocals`).src = `/download?path=${encodeURIComponent(extraAudio)}`;
-  }
-  const links = $(`${prefix}-downloads`);
-  if (links) {
-    links.innerHTML = "";
-    (downloads || []).forEach((path) => {
-      const a = document.createElement("a");
-      a.href = `/download?path=${encodeURIComponent(path)}`;
-      a.textContent = `下载 ${path.split("/").slice(-1)[0]}`;
-      a.target = "_blank";
-      links.appendChild(a);
-    });
-  }
+
+  const links = $("auto-downloads");
+  links.innerHTML = "";
+  (downloads || []).forEach((path) => {
+    const a = document.createElement("a");
+    a.href = `/download?path=${encodeURIComponent(path)}`;
+    a.textContent = `下载 ${path.split("/").slice(-1)[0]}`;
+    a.target = "_blank";
+    links.appendChild(a);
+  });
+
+  $("auto-metadata").textContent = prettyJson(metadata);
+  renderWarning(metadata);
 }
 
-async function pollJob(jobId, prefix) {
+async function pollJob(jobId) {
   try {
     const data = await fetchJson(`/api/jobs/${jobId}`);
     if (!state.jobTimers[jobId]) {
-      state.jobTimers[jobId] = {
-        startedAt: data.started_at || Date.now() / 1000,
-      };
+      state.jobTimers[jobId] = { startedAt: data.started_at || Date.now() / 1000 };
     }
     let etaText = "";
     const startedAt = state.jobTimers[jobId].startedAt;
@@ -153,139 +124,56 @@ async function pollJob(jobId, prefix) {
       const etaSeconds = elapsed * (1 - data.progress) / data.progress;
       etaText = formatEta(etaSeconds);
     }
+
     setProgress(
-      prefix,
       data.progress,
       data.message,
       data.log,
       data.result_audio,
       data.downloads,
-      data.converted_vocals,
-      etaText
+      etaText,
+      data.metadata
     );
+
     if (data.status === "done") return;
     if (data.status === "error") {
-      $(`${prefix}-log`).textContent = `${(data.log || []).join("\n")}\n\n${data.error || ""}`;
+      $("auto-log").textContent = `${(data.log || []).join("\n")}\n\n${data.error || ""}`;
       throw new Error(data.error || "处理失败");
     }
-    setTimeout(() => pollJob(jobId, prefix).catch((err) => {
-      $(`${prefix}-status`).textContent = `Error: ${err.message}`;
+
+    setTimeout(() => pollJob(jobId).catch((err) => {
+      $("auto-status").textContent = `Error: ${err.message}`;
     }), 1200);
   } catch (error) {
-    const status = $(`${prefix}-status`);
-    status.textContent = `轮询重试中: ${error.message}`;
-    setTimeout(() => pollJob(jobId, prefix).catch((err) => {
-      $(`${prefix}-status`).textContent = `Error: ${err.message}`;
+    $("auto-status").textContent = `轮询重试中: ${error.message}`;
+    setTimeout(() => pollJob(jobId).catch((err) => {
+      $("auto-status").textContent = `Error: ${err.message}`;
     }), 2000);
   }
 }
 
-async function submitSingle() {
-  const file = $("single-audio").files[0];
+async function submitAuto() {
+  const file = $("auto-audio").files[0];
   if (!file) {
     alert("请先选择原始音频文件");
     return;
   }
   const form = new FormData();
   form.append("audio", file);
-  form.append("model_name", $("single-model").value);
-  form.append("index_path", $("single-index").value);
-  form.append("use_index", $("single-use-index").checked ? "true" : "false");
-  form.append("f0_up_key", $("single-f0-up-key").value);
-  form.append("f0_method", $("single-f0-method").value);
-  form.append("index_rate", $("single-index-rate").value);
-  form.append("protect", $("single-protect").value);
-  form.append("rms_mix_rate", $("single-rms").value);
-  form.append("filter_radius", $("single-filter-radius").value);
-  form.append("resample_sr", $("single-resample-sr").value);
-  setProgress("single", 0, "任务已提交", [], "", []);
-  const result = await fetchJson("/api/jobs/single", { method: "POST", body: form });
-  state.singleJobId = result.job_id;
+  form.append("profile", $("auto-profile").value || "default");
+  setProgress(0, "任务已提交", [], "", [], "", {});
+  const result = await fetchJson("/api/jobs/auto", { method: "POST", body: form });
+  state.autoJobId = result.job_id;
   state.jobTimers[result.job_id] = { startedAt: Date.now() / 1000 };
-  pollJob(result.job_id, "single").catch((err) => {
-    $("single-status").textContent = `Error: ${err.message}`;
-  });
-}
-
-async function submitLong() {
-  const file = $("long-audio").files[0];
-  if (!file) {
-    alert("请先选择原始音频文件");
-    return;
-  }
-  const form = new FormData();
-  form.append("audio", file);
-  form.append("male_model", $("male-model").value);
-  form.append("male_index", $("male-index").value);
-  form.append("male_f0_up_key", $("male-f0-up-key").value);
-  form.append("male_index_rate", $("male-index-rate").value);
-  form.append("male_protect", $("male-protect").value);
-  form.append("male_rms_mix_rate", $("male-rms").value);
-  form.append("female_model", $("female-model").value);
-  form.append("female_index", $("female-index").value);
-  form.append("female_f0_up_key", $("female-f0-up-key").value);
-  form.append("female_index_rate", $("female-index-rate").value);
-  form.append("female_protect", $("female-protect").value);
-  form.append("female_rms_mix_rate", $("female-rms").value);
-  form.append("uvr_model", $("long-uvr-model").value);
-  form.append("f0_method", $("long-f0-method").value);
-  form.append("filter_radius", $("long-filter-radius").value);
-  form.append("resample_sr", $("long-resample-sr").value);
-  form.append("remix", $("long-remix").checked ? "true" : "false");
-  form.append("reading_mode", $("long-reading-mode").checked ? "true" : "false");
-  form.append("speaker_embedding", $("long-speaker-embedding").checked ? "true" : "false");
-  setProgress("long", 0, "任务已提交", [], "", []);
-  const result = await fetchJson("/api/jobs/long", { method: "POST", body: form });
-  state.longJobId = result.job_id;
-  state.jobTimers[result.job_id] = { startedAt: Date.now() / 1000 };
-  pollJob(result.job_id, "long").catch((err) => {
-    $("long-status").textContent = `Error: ${err.message}`;
-  });
-}
-
-function initTabs() {
-  document.querySelectorAll(".tab-btn").forEach((button) => {
-    button.addEventListener("click", () => {
-      document.querySelectorAll(".tab-btn").forEach((item) => item.classList.remove("active"));
-      document.querySelectorAll(".tab").forEach((item) => item.classList.remove("active"));
-      button.classList.add("active");
-      $(`tab-${button.dataset.tab}`).classList.add("active");
-    });
+  pollJob(result.job_id).catch((err) => {
+    $("auto-status").textContent = `Error: ${err.message}`;
   });
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  initTabs();
-  [
-    ["single-f0-up-key", "single-f0-up-key-value"],
-    ["single-index-rate", "single-index-rate-value"],
-    ["single-protect", "single-protect-value"],
-    ["single-rms", "single-rms-value"],
-    ["single-filter-radius", "single-filter-radius-value"],
-    ["single-resample-sr", "single-resample-sr-value"],
-    ["male-f0-up-key", "male-f0-up-key-value"],
-    ["male-index-rate", "male-index-rate-value"],
-    ["male-protect", "male-protect-value"],
-    ["male-rms", "male-rms-value"],
-    ["female-f0-up-key", "female-f0-up-key-value"],
-    ["female-index-rate", "female-index-rate-value"],
-    ["female-protect", "female-protect-value"],
-    ["female-rms", "female-rms-value"],
-    ["long-filter-radius", "long-filter-radius-value"],
-    ["long-resample-sr", "long-resample-sr-value"],
-  ].forEach(([rangeId, valueId]) => setRangePair(rangeId, valueId));
-
-  setAudioPreview("single-audio", "single-original");
-  setAudioPreview("long-audio", "long-original");
-
+  setAudioPreview("auto-audio", "auto-original");
   await loadOptions();
-  $("single-model").addEventListener("change", () => handleModelChange("single-model", "single-index", "single"));
-  $("male-model").addEventListener("change", () => handleModelChange("male-model", "male-index", "male"));
-  $("female-model").addEventListener("change", () => handleModelChange("female-model", "female-index", "female"));
-  $("single-submit").addEventListener("click", () => submitSingle().catch((err) => {
-    $("single-status").textContent = `Error: ${err.message}`;
-  }));
-  $("long-submit").addEventListener("click", () => submitLong().catch((err) => {
-    $("long-status").textContent = `Error: ${err.message}`;
+  $("auto-submit").addEventListener("click", () => submitAuto().catch((err) => {
+    $("auto-status").textContent = `Error: ${err.message}`;
   }));
 });

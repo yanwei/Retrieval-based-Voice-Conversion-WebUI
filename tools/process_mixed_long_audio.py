@@ -34,9 +34,11 @@ from infer.lib.rmvpe import RMVPE
 import infer.modules.uvr5.modules as uvr_modules
 from infer.modules.uvr5.modules import uvr
 from infer.modules.vc.modules import VC
+from tools.device_policy import choose_uvr_device
 
 
 UVR_MODEL = "auto"
+UVR_DEVICE_MODE = "auto"
 UVR_AUTO_CANDIDATES = ("HP5_only_main_vocal", "HP3_all_vocals")
 MALE_MODEL = "man-B.pth"
 MALE_INDEX = "man-B.index"
@@ -96,11 +98,16 @@ READING_CLUSTER_UNIT_SEC = 3.50
 READING_CLUSTER_GAP_SEC = 3.00
 READING_CLUSTER_TOTAL_SEC = 14.0
 READING_CLUSTER_SIM_THRESHOLD = 0.88
+READING_CLUSTER_MAX_INTERNAL_SILENCE_SEC = 1.20
 READING_PASSTHROUGH_BRIDGE_MAX_SEC = 0.80
 READING_PASSTHROUGH_BRIDGE_TOTAL_SEC = 14.0
 READING_PASSTHROUGH_F0_DIFF_HZ = 45.0
 CONTEXT_SMOOTH_MAX_SEC = 1.20
 CONTEXT_SMOOTH_GAP_SEC = 3.00
+CONTEXT_SMOOTH_LOW_CONF_MAX_SEC = 18.0
+CONTEXT_SMOOTH_LOW_CONF_GAP_SEC = 10.0
+CONTEXT_SMOOTH_RUN_TOTAL_SEC = 30.0
+CONTEXT_SMOOTH_LOW_VOICED_RATIO = 0.35
 SPEAKER_SIM_THRESHOLD = 0.58
 SPEAKER_CONTINUATION_THRESHOLD = 0.52
 SPEAKER_CROSS_ROUTE_THRESHOLD = 0.72
@@ -109,6 +116,8 @@ UNVOICED_MIN_RATIO = 0.15
 DECISION_F0_HZ = 190.0
 HIGH_CONF_MALE_MAX_HZ = 165.0
 HIGH_CONF_FEMALE_MIN_HZ = 190.0
+MUSIC_RESIDUAL_MAX_VOICED_RATIO = 0.30
+MUSIC_RESIDUAL_MIN_F0_HZ = 320.0
 SEGMENT_EDGE_FADE_SEC = 0.025
 
 SPEAKER_ENCODER = None
@@ -167,6 +176,7 @@ def analyze_intervals(
                 "note": note,
             }
         )
+    smooth_context_routes(analyzed, sr)
     return analyzed
 
 
@@ -252,11 +262,12 @@ def merge_context_absorbed_segments(
         should_merge = (
             item["route"] == prev["route"]
             and item["route"] != "passthrough"
-            and gap_sec <= READING_CLUSTER_GAP_SEC
-            and total_sec <= READING_CLUSTER_TOTAL_SEC
-            and (
-                prev["duration_sec"] <= READING_CLUSTER_UNIT_SEC
-                or item["duration_sec"] <= READING_CLUSTER_UNIT_SEC
+            and should_merge_reading_cluster(
+                prev_duration_sec=prev["duration_sec"],
+                item_duration_sec=item["duration_sec"],
+                gap_sec=gap_sec,
+                merged_duration_sec=total_sec,
+                timbre_similarity=1.0,
             )
         )
         if should_merge:
@@ -276,6 +287,24 @@ def merge_context_absorbed_segments(
         else:
             merged.append(item.copy())
     return merged
+
+
+def should_merge_reading_cluster(
+    prev_duration_sec: float,
+    item_duration_sec: float,
+    gap_sec: float,
+    merged_duration_sec: float,
+    timbre_similarity: float,
+) -> bool:
+    return (
+        READING_MODE
+        and prev_duration_sec <= READING_CLUSTER_UNIT_SEC
+        and item_duration_sec <= READING_CLUSTER_UNIT_SEC
+        and gap_sec <= READING_CLUSTER_GAP_SEC
+        and gap_sec <= READING_CLUSTER_MAX_INTERNAL_SILENCE_SEC
+        and merged_duration_sec <= READING_CLUSTER_TOTAL_SEC
+        and timbre_similarity >= SPEAKER_CONTINUATION_THRESHOLD
+    )
 
 
 def ensure_environment() -> None:
@@ -334,12 +363,14 @@ def run_uvr_paths(
         old_uvr_is_half = uvr_modules.config.is_half
         old_temp = os.environ.get("TEMP")
         try:
-            # The UVR VR model can produce saturated/noisy output on Apple MPS.
-            # Keep separation on CPU; later RVC stages may still use the main Config device.
+            runtime_config = Config()
+            uvr_device, uvr_is_half = choose_uvr_device(
+                UVR_DEVICE_MODE, runtime_config.device, runtime_config.is_half
+            )
             temp_dir.mkdir(parents=True, exist_ok=True)
             os.environ["TEMP"] = str(temp_dir)
-            uvr_modules.config.device = "cpu"
-            uvr_modules.config.is_half = False
+            uvr_modules.config.device = uvr_device
+            uvr_modules.config.is_half = uvr_is_half
             for message in uvr(
                 selected_model,
                 "",
@@ -502,6 +533,90 @@ def score_uvr_vocal_candidate(vocal_path: Path) -> dict:
     }
 
 
+def score_uvr_region_balance(vocal_path: Path, instrumental_path: Path) -> dict:
+    vocal_audio, sr = librosa.load(vocal_path, sr=None, mono=True)
+    instrumental_audio, inst_sr = librosa.load(instrumental_path, sr=sr, mono=True)
+    if inst_sr != sr:
+        raise RuntimeError(f"Unexpected UVR region sample rate mismatch: vocal={sr}, instrumental={inst_sr}")
+
+    def region_metrics(start_sec: float, end_sec: float) -> dict | None:
+        if sr <= 0:
+            return None
+        start = max(0, int(start_sec * sr))
+        end = min(len(vocal_audio), int(end_sec * sr))
+        if end - start < int(2.0 * sr):
+            return None
+        vocal_region = vocal_audio[start:end]
+        instrumental_region = instrumental_audio[start:end]
+        vocal_rms = float(np.sqrt(np.mean(vocal_region**2))) if vocal_region.size else 0.0
+        instrumental_rms = (
+            float(np.sqrt(np.mean(instrumental_region**2))) if instrumental_region.size else 0.0
+        )
+        return {
+            "vocal_rms": vocal_rms,
+            "instrumental_rms": instrumental_rms,
+            "vocal_to_instrumental_ratio": vocal_rms / max(instrumental_rms, 1e-9),
+        }
+
+    regions = {}
+    for name, start_sec, end_sec in (
+        ("intro_0_12", 0.0, 12.0),
+        ("early_7_18", 7.0, 18.0),
+    ):
+        metrics = region_metrics(start_sec, end_sec)
+        if metrics is not None:
+            regions[name] = metrics
+    return regions
+
+
+def select_auto_uvr_model(metrics: dict, source_seconds: float) -> tuple[str, str]:
+    hp5 = metrics.get("HP5_only_main_vocal", {})
+    hp3 = metrics.get("HP3_all_vocals", {})
+    hp3_coverage = float(hp3.get("coverage", 0.0))
+    hp5_coverage = float(hp5.get("coverage", 0.0))
+    hp3_looks_continuous = hp3_coverage > 0.78
+    hp5_keeps_enough_vocal = hp5_coverage > 0.10
+    hp5_reduces_bleed = hp5_coverage <= hp3_coverage - 0.10
+    hp3_strong_music_bleed = hp3_coverage >= 0.90 and hp5_coverage <= 0.82
+
+    hp5_regions = hp5.get("regions") or {}
+    hp3_regions = hp3.get("regions") or {}
+    hp5_intro = hp5_regions.get("intro_0_12") or {}
+    hp3_intro = hp3_regions.get("intro_0_12") or {}
+    hp5_early = hp5_regions.get("early_7_18") or {}
+    hp3_early = hp3_regions.get("early_7_18") or {}
+    hp3_intro_ratio = float(hp3_intro.get("vocal_to_instrumental_ratio", 0.0))
+    hp5_intro_ratio = float(hp5_intro.get("vocal_to_instrumental_ratio", 0.0))
+    hp3_early_ratio = float(hp3_early.get("vocal_to_instrumental_ratio", 0.0))
+    hp5_early_ratio = float(hp5_early.get("vocal_to_instrumental_ratio", 0.0))
+
+    intro_music_bleed = (
+        source_seconds >= 60.0
+        and hp5_keeps_enough_vocal
+        and hp3_intro_ratio >= 1.05
+        and hp5_intro_ratio <= 0.95
+        and hp3_early_ratio >= 1.15
+        and hp5_early_ratio <= 0.90
+    )
+    if intro_music_bleed:
+        return (
+            "HP5_only_main_vocal",
+            "HP3 vocal track looked music-heavy in the intro window; HP5 kept more of that region in instrumental.",
+        )
+
+    if hp3_looks_continuous and hp5_keeps_enough_vocal and (
+        hp5_reduces_bleed or hp3_strong_music_bleed
+    ):
+        return (
+            "HP5_only_main_vocal",
+            "HP3 vocal track looked nearly continuous; HP5 reduced likely music bleed.",
+        )
+    return (
+        "HP3_all_vocals",
+        "HP3 did not show strong continuous-vocal over-detection on the sample.",
+    )
+
+
 def choose_auto_uvr_model(input_audio: Path, output_dir: Path) -> str:
     audio_info = sf.info(input_audio)
     audio, sr = sf.read(input_audio, always_2d=True, dtype="float32")
@@ -516,23 +631,9 @@ def choose_auto_uvr_model(input_audio: Path, output_dir: Path) -> str:
             sample_path, candidate_dir, model_name
         )
         metrics[model_name] = score_uvr_vocal_candidate(vocal_path)
+        metrics[model_name]["regions"] = score_uvr_region_balance(vocal_path, instrumental_path)
 
-    hp5 = metrics.get("HP5_only_main_vocal", {})
-    hp3 = metrics.get("HP3_all_vocals", {})
-    hp3_coverage = float(hp3.get("coverage", 0.0))
-    hp5_coverage = float(hp5.get("coverage", 0.0))
-    hp3_looks_continuous = hp3_coverage > 0.78
-    hp5_keeps_enough_vocal = hp5_coverage > 0.10
-    hp5_reduces_bleed = hp5_coverage <= hp3_coverage - 0.10
-    hp3_strong_music_bleed = hp3_coverage >= 0.90 and hp5_coverage <= 0.82
-    if hp3_looks_continuous and hp5_keeps_enough_vocal and (
-        hp5_reduces_bleed or hp3_strong_music_bleed
-    ):
-        selected_model = "HP5_only_main_vocal"
-        reason = "HP3 vocal track looked nearly continuous; HP5 reduced likely music bleed."
-    else:
-        selected_model = "HP3_all_vocals"
-        reason = "HP3 did not show strong continuous-vocal over-detection on the sample."
+    selected_model, reason = select_auto_uvr_model(metrics, audio_info.duration)
 
     metadata = {
         "selected_model": selected_model,
@@ -712,6 +813,11 @@ def classify_segment(
         return "unknown", "passthrough", 0.0, voiced_frames, voiced_ratio, "low_voice"
 
     median_f0 = float(np.median(voiced))
+    if (
+        voiced_ratio < MUSIC_RESIDUAL_MAX_VOICED_RATIO
+        and median_f0 >= MUSIC_RESIDUAL_MIN_F0_HZ
+    ):
+        return "unknown", "passthrough", median_f0, voiced_frames, voiced_ratio, "music_residual"
     classification = "female" if median_f0 >= DECISION_F0_HZ else "male"
     high_confidence = (
         median_f0 <= HIGH_CONF_MALE_MAX_HZ or median_f0 >= HIGH_CONF_FEMALE_MIN_HZ
@@ -807,35 +913,82 @@ def smooth_context_routes(provisional: List[dict], sr: int) -> None:
     if len(provisional) < 3:
         return
 
-    max_duration = CONTEXT_SMOOTH_MAX_SEC
     max_gap = int(CONTEXT_SMOOTH_GAP_SEC * sr)
+    max_single_duration = CONTEXT_SMOOTH_MAX_SEC
+    max_low_conf_duration = CONTEXT_SMOOTH_LOW_CONF_MAX_SEC
+    max_low_conf_gap = int(CONTEXT_SMOOTH_LOW_CONF_GAP_SEC * sr)
+    max_run_duration = CONTEXT_SMOOTH_RUN_TOTAL_SEC
 
-    for i in range(1, len(provisional) - 1):
-        prev = provisional[i - 1]
+    def is_context_candidate(item: dict) -> bool:
+        note = str(item.get("note") or "")
+        duration_sec = float(item.get("duration_sec") or 0.0)
+        voiced_ratio = float(item.get("voiced_ratio") or 0.0)
+        low_confidence = (
+            item.get("route") == "passthrough"
+            or note in {"borderline_f0", "short_passthrough", "low_voice", "music_residual"}
+            or voiced_ratio < CONTEXT_SMOOTH_LOW_VOICED_RATIO
+        )
+        if not low_confidence:
+            return False
+        duration_limit = max_low_conf_duration if voiced_ratio < CONTEXT_SMOOTH_LOW_VOICED_RATIO or note == "borderline_f0" else max_single_duration
+        return duration_sec <= duration_limit
+
+    def prefers_low_conf_gap(item: dict) -> bool:
+        note = str(item.get("note") or "")
+        voiced_ratio = float(item.get("voiced_ratio") or 0.0)
+        return voiced_ratio < CONTEXT_SMOOTH_LOW_VOICED_RATIO or note == "borderline_f0"
+
+    i = 1
+    while i < len(provisional) - 1:
         item = provisional[i]
-        nxt = provisional[i + 1]
-        if (
-            prev["route"] == nxt["route"]
-            and prev["route"] != "passthrough"
-            and item["duration_sec"] <= max_duration
-            and item["route"] != prev["route"]
-        ):
-            left_gap = item["start"] - prev["end"]
-            right_gap = nxt["start"] - item["end"]
-            if left_gap <= max_gap and right_gap <= max_gap and (
-                item["route"] == "passthrough"
-                or item["note"] in {"borderline_f0", "short_passthrough"}
-            ):
-                item["route"] = prev["route"]
-                item["classification"] = prev["classification"]
-                item["note"] = f"context_smoothed_{prev['route']}"
+        if not is_context_candidate(item):
+            i += 1
+            continue
+
+        start_idx = i
+        end_idx = i
+        run_duration = float(item.get("duration_sec") or 0.0)
+        run_gap_limit = max_low_conf_gap if prefers_low_conf_gap(item) else max_gap
+        while end_idx + 1 < len(provisional) - 1:
+            nxt_item = provisional[end_idx + 1]
+            if not is_context_candidate(nxt_item):
+                break
+            if nxt_item["start"] - provisional[end_idx]["end"] > run_gap_limit:
+                break
+            projected_duration = run_duration + float(nxt_item.get("duration_sec") or 0.0)
+            if projected_duration > max_run_duration:
+                break
+            if prefers_low_conf_gap(nxt_item):
+                run_gap_limit = max(run_gap_limit, max_low_conf_gap)
+            end_idx += 1
+            run_duration = projected_duration
+
+        prev = provisional[start_idx - 1]
+        nxt = provisional[end_idx + 1]
+        if prev["route"] == nxt["route"] and prev["route"] != "passthrough":
+            left_gap = provisional[start_idx]["start"] - prev["end"]
+            right_gap = nxt["start"] - provisional[end_idx]["end"]
+            if left_gap <= run_gap_limit and right_gap <= run_gap_limit:
                 neighbor_f0 = [
                     float(prev.get("median_f0", 0.0)),
                     float(nxt.get("median_f0", 0.0)),
                 ]
                 voiced_neighbor_f0 = [f for f in neighbor_f0 if f > 0]
-                if voiced_neighbor_f0:
-                    item["median_f0"] = float(sum(voiced_neighbor_f0) / len(voiced_neighbor_f0))
+                smoothed_f0 = (
+                    float(sum(voiced_neighbor_f0) / len(voiced_neighbor_f0))
+                    if voiced_neighbor_f0
+                    else 0.0
+                )
+                for idx in range(start_idx, end_idx + 1):
+                    current = provisional[idx]
+                    if current["route"] == prev["route"] and str(current.get("note") or "") == "ok":
+                        continue
+                    current["route"] = prev["route"]
+                    current["classification"] = prev["classification"]
+                    current["note"] = f"context_smoothed_{prev['route']}"
+                    if smoothed_f0 > 0:
+                        current["median_f0"] = smoothed_f0
+        i = end_idx + 1
 
 
 def merge_adjacent_same_route(
@@ -927,15 +1080,15 @@ def merge_adjacent_same_route(
             and merged_len <= short_cluster_total
         )
         reading_cluster_merge = (
-            READING_MODE
-            and
             item["route"] == prev["route"]
             and item["route"] != "passthrough"
-            and prev["duration_sec"] <= READING_CLUSTER_UNIT_SEC
-            and item["duration_sec"] <= READING_CLUSTER_UNIT_SEC
-            and gap <= reading_cluster_gap
-            and merged_len <= reading_cluster_total
-            and timbre_sim >= SPEAKER_CONTINUATION_THRESHOLD
+            and should_merge_reading_cluster(
+                prev_duration_sec=prev["duration_sec"],
+                item_duration_sec=item["duration_sec"],
+                gap_sec=gap / sr,
+                merged_duration_sec=merged_len / sr,
+                timbre_similarity=timbre_sim,
+            )
         )
         passthrough_bridge_merge = False
         if (

@@ -1,0 +1,839 @@
+{
+  "labeled_sample_count": 146,
+  "field_diff_counts": {
+    "speaker_pattern": 91,
+    "voice_age": 104,
+    "music_pattern": 85,
+    "language": 36
+  },
+  "top_diff_patterns": [
+    {
+      "field": "voice_age",
+      "predicted": "",
+      "actual": "adult",
+      "count": 95
+    },
+    {
+      "field": "music_pattern",
+      "predicted": "bgm",
+      "actual": "no_music",
+      "count": 65
+    },
+    {
+      "field": "speaker_pattern",
+      "predicted": "male_female_mixed",
+      "actual": "single_male",
+      "count": 27
+    },
+    {
+      "field": "speaker_pattern",
+      "predicted": "male_female_mixed",
+      "actual": "single_female",
+      "count": 21
+    },
+    {
+      "field": "speaker_pattern",
+      "predicted": "multi_speaker_other",
+      "actual": "single_female",
+      "count": 18
+    },
+    {
+      "field": "language",
+      "predicted": "mixed",
+      "actual": "en",
+      "count": 16
+    },
+    {
+      "field": "language",
+      "predicted": "en",
+      "actual": "zh",
+      "count": 14
+    },
+    {
+      "field": "speaker_pattern",
+      "predicted": "multi_speaker_other",
+      "actual": "single_male",
+      "count": 10
+    },
+    {
+      "field": "music_pattern",
+      "predicted": "bgm",
+      "actual": "transient_sfx",
+      "count": 7
+    },
+    {
+      "field": "music_pattern",
+      "predicted": "bgm",
+      "actual": "song",
+      "count": 6
+    },
+    {
+      "field": "speaker_pattern",
+      "predicted": "multi_speaker_other",
+      "actual": "male_female_mixed",
+      "count": 6
+    },
+    {
+      "field": "music_pattern",
+      "predicted": "transient_sfx",
+      "actual": "no_music",
+      "count": 5
+    },
+    {
+      "field": "voice_age",
+      "predicted": "adult",
+      "actual": "child",
+      "count": 5
+    },
+    {
+      "field": "language",
+      "predicted": "mixed",
+      "actual": "zh",
+      "count": 4
+    },
+    {
+      "field": "speaker_pattern",
+      "predicted": "single_female",
+      "actual": "single_male",
+      "count": 2
+    },
+    {
+      "field": "voice_age",
+      "predicted": "",
+      "actual": "unknown",
+      "count": 2
+    },
+    {
+      "field": "language",
+      "predicted": "",
+      "actual": "zh",
+      "count": 2
+    },
+    {
+      "field": "speaker_pattern",
+      "predicted": "",
+      "actual": "single_female",
+      "count": 2
+    },
+    {
+      "field": "music_pattern",
+      "predicted": "",
+      "actual": "no_music",
+      "count": 2
+    },
+    {
+      "field": "speaker_pattern",
+      "predicted": "single_male",
+      "actual": "single_female",
+      "count": 2
+    },
+    {
+      "field": "speaker_pattern",
+      "predicted": "single_male",
+      "actual": "male_female_mixed",
+      "count": 2
+    },
+    {
+      "field": "voice_age",
+      "predicted": "",
+      "actual": "child",
+      "count": 1
+    },
+    {
+      "field": "speaker_pattern",
+      "predicted": "male_female_mixed",
+      "actual": "multi_speaker_other",
+      "count": 1
+    },
+    {
+      "field": "voice_age",
+      "predicted": "adult",
+      "actual": "unknown",
+      "count": 1
+    }
+  ],
+  "single_male_mispredicted": [
+    {
+      "sample_id": "tape3a_002013_8530532",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301962_256bfc0f7be011f0b62218c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1484551",
+      "predicted_speaker_pattern": "single_female",
+      "predicted_music_pattern": "no_music",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301993_4555f48f765a11ef996918c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_page_302000_e787406e637c11ef871d18c04d251e75",
+      "predicted_speaker_pattern": "multi_speaker_other",
+      "predicted_music_pattern": "transient_sfx",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/candidate/page_302000_e787406e637c11ef871d18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1484076",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301992_01484076.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1482691",
+      "predicted_speaker_pattern": "single_female",
+      "predicted_music_pattern": "no_music",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301981_03a5b1b075ac11ef98ab18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1484074",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301992_01484074.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1484073",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301992_01484073.mp3"
+    },
+    {
+      "sample_id": "tape3a_002011_page_357462_0f5edc51780511f08660b32a8ac171c2",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357462_0f5edc51780511f08660b32a8ac171c2.mp3"
+    },
+    {
+      "sample_id": "tape3a_002011_page_357462_0eb296c0780511f0a0bbb32a8ac171c2",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002011/candidate/page_357462_0eb296c0780511f0a0bbb32a8ac171c2.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386958",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_7416e130648111ef820418c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386957",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_73e263ae648111efa6dd18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386956",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_73ae0d40648111ef8f6218c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386955",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_73771ec0648111efb8f818c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386954",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_302000_7342c84f648111ef96ee18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386868",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301964_9fd1b34f647b11efa6d718c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386867",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301964_9f4ea09e647b11ef9c4d18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386866",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301964_9ee0eab0647b11ef92b318c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386865",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301964_9e7816c0647b11ef8ece18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386779",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301991_805dd1a1647811ef92d918c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386776",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301991_7fc53b21647811ef8add18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386729",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_fc00bcc0647611efbca218c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386728",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_fbd12140647611efbfdb18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386727",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_fba3cfae647611efa45118c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386726",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_fb74342e647611ef8ade18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386725",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_fb46e29e647611efbb0718c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386615",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_a2cf03e1647211ef9e8d18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386614",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_a2983c70647211efaa3618c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386613",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_3635c3f0647111ef864b18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1386593",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301964_153f48a1646811efa11418c04d251e75.mp3"
+    },
+    {
+      "sample_id": "round2_tape4b_002007_page_006_9fd7f921f73911eb8b1cb89a2af90636",
+      "predicted_speaker_pattern": "multi_speaker_other",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape4b_002007/mixed_multi_speaker_other_bgm/page_006_9fd7f921f73911eb8b1cb89a2af90636.mp3"
+    },
+    {
+      "sample_id": "round2_tape8a_002013_unit_114875",
+      "predicted_speaker_pattern": "multi_speaker_other",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "transient_sfx",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape8a_002013/en_multi_speaker_other_bgm/unit_114875.mp3"
+    },
+    {
+      "sample_id": "round2_tape5b_002006_page_050_3c010140dc0811ebad07a4bb6d450ec3",
+      "predicted_speaker_pattern": "male_female_mixed",
+      "predicted_music_pattern": "no_music",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape5b_002006/mixed_male_female_mixed_no_music/page_050_3c010140dc0811ebad07a4bb6d450ec3.mp3"
+    },
+    {
+      "sample_id": "round2_tape6b_002001_unit_103017",
+      "predicted_speaker_pattern": "multi_speaker_other",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape6b_002001/mixed_multi_speaker_other_bgm/unit_103017.mp3"
+    },
+    {
+      "sample_id": "round2_tape2a_002014_page_313737_1438753",
+      "predicted_speaker_pattern": "multi_speaker_other",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape2a_002014/mixed_multi_speaker_other_bgm/page_313737_1438753.mp3"
+    },
+    {
+      "sample_id": "round2_tape1b_002011_page_348107_48aa954fd24511efb602bd7e1249b5c0",
+      "predicted_speaker_pattern": "multi_speaker_other",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape1b_002011/zh_multi_speaker_other_bgm/page_348107_48aa954fd24511efb602bd7e1249b5c0.mp3"
+    },
+    {
+      "sample_id": "round2_tape4a_002014_page_584613_08524517",
+      "predicted_speaker_pattern": "multi_speaker_other",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape4a_002014/mixed_multi_speaker_other_bgm/page_584613_08524517.mp3"
+    },
+    {
+      "sample_id": "round2_tape4b_002014_page_360855_40b7f88f00c211f1952eb32a8ac171c2",
+      "predicted_speaker_pattern": "multi_speaker_other",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape4b_002014/mixed_multi_speaker_other_bgm/page_360855_40b7f88f00c211f1952eb32a8ac171c2.mp3"
+    },
+    {
+      "sample_id": "round2_tape5a_002003_page_065_b0968600a70211ebbe6db89a2af90636",
+      "predicted_speaker_pattern": "multi_speaker_other",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape5a_002003/mixed_multi_speaker_other_bgm/page_065_b0968600a70211ebbe6db89a2af90636.mp3"
+    },
+    {
+      "sample_id": "round2_tape6b_002007_page_21107_629e3ff079c111ecb2b4b89a2af90636",
+      "predicted_speaker_pattern": "multi_speaker_other",
+      "predicted_music_pattern": "bgm",
+      "actual_music_pattern": "no_music",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape6b_002007/mixed_multi_speaker_other_bgm/page_21107_629e3ff079c111ecb2b4b89a2af90636.mp3"
+    }
+  ],
+  "actual_song_count": 6,
+  "actual_song_items": [
+    {
+      "sample_id": "tape3a_002013_1432600",
+      "predicted_music_pattern": "bgm",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301974_1b1c3961685811ef987e18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1389941",
+      "predicted_music_pattern": "bgm",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301988_8911ca80652311ef81c118c04d251e75.mp3"
+    },
+    {
+      "sample_id": "tape3a_002013_1389787",
+      "predicted_music_pattern": "bgm",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set/tape3a_002013/known_failure/page_301976_7f6a5a8f652011ef8eae18c04d251e75.mp3"
+    },
+    {
+      "sample_id": "round2_tape3a_002002_000029_Unit 3_Fun Time",
+      "predicted_music_pattern": "bgm",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape3a_002002/mixed_multi_speaker_other_bgm/000029_Unit 3_Fun Time.mp3"
+    },
+    {
+      "sample_id": "round2_tape6a_002002_000063_Unit 5_Fun Time",
+      "predicted_music_pattern": "bgm",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape6a_002002/mixed_multi_speaker_other_bgm/000063_Unit 5_Fun Time.mp3"
+    },
+    {
+      "sample_id": "round2_tape3a_002014_page_305407_2c3b3a70676d11efabd118c04d251e75",
+      "predicted_music_pattern": "bgm",
+      "path": "/Users/yanwei/src/Retrieval-based-Voice-Conversion-WebUI/assets/sample_library/review_set_round2/tape3a_002014/mixed_multi_speaker_other_bgm/page_305407_2c3b3a70676d11efabd118c04d251e75.mp3"
+    }
+  ],
+  "actual_combo_counts": [
+    {
+      "combo": [
+        "en",
+        "single_female",
+        "adult",
+        "no_music"
+      ],
+      "count": 43
+    },
+    {
+      "combo": [
+        "zh",
+        "single_female",
+        "adult",
+        "no_music"
+      ],
+      "count": 38
+    },
+    {
+      "combo": [
+        "en",
+        "single_male",
+        "adult",
+        "no_music"
+      ],
+      "count": 36
+    },
+    {
+      "combo": [
+        "zh",
+        "single_male",
+        "adult",
+        "no_music"
+      ],
+      "count": 6
+    },
+    {
+      "combo": [
+        "en",
+        "male_female_mixed",
+        "adult",
+        "song"
+      ],
+      "count": 3
+    },
+    {
+      "combo": [
+        "en",
+        "male_female_mixed",
+        "adult",
+        "no_music"
+      ],
+      "count": 3
+    },
+    {
+      "combo": [
+        "en",
+        "single_female",
+        "child",
+        "no_music"
+      ],
+      "count": 3
+    },
+    {
+      "combo": [
+        "en",
+        "single_male",
+        "child",
+        "no_music"
+      ],
+      "count": 2
+    },
+    {
+      "combo": [
+        "zh",
+        "male_female_mixed",
+        "adult",
+        "transient_sfx"
+      ],
+      "count": 2
+    },
+    {
+      "combo": [
+        "zh",
+        "male_female_mixed",
+        "adult",
+        "no_music"
+      ],
+      "count": 2
+    },
+    {
+      "combo": [
+        "zh",
+        "multi_speaker_other",
+        "unknown",
+        "transient_sfx"
+      ],
+      "count": 1
+    },
+    {
+      "combo": [
+        "en",
+        "male_female_mixed",
+        "unknown",
+        "song"
+      ],
+      "count": 1
+    },
+    {
+      "combo": [
+        "en",
+        "male_female_mixed",
+        "unknown",
+        "transient_sfx"
+      ],
+      "count": 1
+    },
+    {
+      "combo": [
+        "zh",
+        "single_female",
+        "adult",
+        "transient_sfx"
+      ],
+      "count": 1
+    },
+    {
+      "combo": [
+        "zh",
+        "single_male",
+        "adult",
+        "transient_sfx"
+      ],
+      "count": 1
+    },
+    {
+      "combo": [
+        "mixed",
+        "multi_speaker_other",
+        "adult",
+        "song"
+      ],
+      "count": 1
+    },
+    {
+      "combo": [
+        "en",
+        "multi_speaker_other",
+        "child",
+        "song"
+      ],
+      "count": 1
+    },
+    {
+      "combo": [
+        "en",
+        "male_female_mixed",
+        "adult",
+        "transient_sfx"
+      ],
+      "count": 1
+    }
+  ],
+  "target_bucket_deficits": [
+    {
+      "bucket": [
+        "zh",
+        "male_female_mixed",
+        "no_music"
+      ],
+      "current": 2,
+      "target": 6,
+      "missing": 4
+    },
+    {
+      "bucket": [
+        "zh",
+        "single_male",
+        "bgm"
+      ],
+      "current": 0,
+      "target": 4,
+      "missing": 4
+    },
+    {
+      "bucket": [
+        "zh",
+        "single_female",
+        "bgm"
+      ],
+      "current": 0,
+      "target": 4,
+      "missing": 4
+    },
+    {
+      "bucket": [
+        "zh",
+        "male_female_mixed",
+        "bgm"
+      ],
+      "current": 0,
+      "target": 4,
+      "missing": 4
+    },
+    {
+      "bucket": [
+        "en",
+        "single_male",
+        "transient_sfx"
+      ],
+      "current": 0,
+      "target": 4,
+      "missing": 4
+    },
+    {
+      "bucket": [
+        "en",
+        "single_female",
+        "transient_sfx"
+      ],
+      "current": 0,
+      "target": 4,
+      "missing": 4
+    },
+    {
+      "bucket": [
+        "en",
+        "single_male",
+        "bgm"
+      ],
+      "current": 0,
+      "target": 4,
+      "missing": 4
+    },
+    {
+      "bucket": [
+        "en",
+        "single_female",
+        "bgm"
+      ],
+      "current": 0,
+      "target": 4,
+      "missing": 4
+    },
+    {
+      "bucket": [
+        "en",
+        "male_female_mixed",
+        "bgm"
+      ],
+      "current": 0,
+      "target": 4,
+      "missing": 4
+    },
+    {
+      "bucket": [
+        "en",
+        "single_male",
+        "song"
+      ],
+      "current": 0,
+      "target": 4,
+      "missing": 4
+    },
+    {
+      "bucket": [
+        "en",
+        "single_female",
+        "song"
+      ],
+      "current": 0,
+      "target": 4,
+      "missing": 4
+    },
+    {
+      "bucket": [
+        "en",
+        "male_female_mixed",
+        "no_music"
+      ],
+      "current": 3,
+      "target": 6,
+      "missing": 3
+    },
+    {
+      "bucket": [
+        "zh",
+        "multi_speaker_other",
+        "transient_sfx"
+      ],
+      "current": 1,
+      "target": 4,
+      "missing": 3
+    },
+    {
+      "bucket": [
+        "zh",
+        "single_male",
+        "song"
+      ],
+      "current": 0,
+      "target": 3,
+      "missing": 3
+    },
+    {
+      "bucket": [
+        "zh",
+        "single_female",
+        "song"
+      ],
+      "current": 0,
+      "target": 3,
+      "missing": 3
+    },
+    {
+      "bucket": [
+        "zh",
+        "single_male",
+        "no_music"
+      ],
+      "current": 6,
+      "target": 8,
+      "missing": 2
+    },
+    {
+      "bucket": [
+        "en",
+        "male_female_mixed",
+        "transient_sfx"
+      ],
+      "current": 2,
+      "target": 4,
+      "missing": 2
+    },
+    {
+      "bucket": [
+        "zh",
+        "single_female",
+        "no_music"
+      ],
+      "current": 38,
+      "target": 8,
+      "missing": 0
+    },
+    {
+      "bucket": [
+        "en",
+        "single_male",
+        "no_music"
+      ],
+      "current": 38,
+      "target": 8,
+      "missing": 0
+    },
+    {
+      "bucket": [
+        "en",
+        "single_female",
+        "no_music"
+      ],
+      "current": 46,
+      "target": 8,
+      "missing": 0
+    },
+    {
+      "bucket": [
+        "en",
+        "male_female_mixed",
+        "song"
+      ],
+      "current": 4,
+      "target": 4,
+      "missing": 0
+    }
+  ]
+}
